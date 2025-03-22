@@ -1,4 +1,21 @@
 <script setup>
+
+import axios from 'axios'
+import { ref } from 'vue'
+
+const user = JSON.parse(localStorage.getItem('user'))
+const email = ref(user.email);
+
+function logout() {
+    axios.post('https://dov.pp.ua/logout').then(response => {  
+    }).catch(error => {
+        console.log(error)
+    }).then(response => {
+        localStorage.removeItem('user')
+        location.replace('https://dov.pp.ua/scode/')
+    })
+}
+
 </script>
 
 <template>
@@ -6,8 +23,8 @@
 <div class="container 1header d-flex justify-content-between px-4 1bb align-items-center mt-3">
 
 <div class="text-center pt-2">
-        <a href="https://dov.pp.ua/scod/" class="text-decoration-none text-black">
-          <h5>SCOD for CMD-V4</h5>
+        <a href="https://dov.pp.ua/scode/" class="text-decoration-none text-black">
+          <h5>SCODE for CMD-V4</h5>
         </a>
 </div>
 
@@ -20,7 +37,7 @@
 </button>    
   
         <ul class="dropdown-menu">
-      <li class="dropdown-item fw-semibold" id="email">Get email</li>
+      <li class="dropdown-item fw-semibold" id="email">{{ email }}</li>
           <li><hr class=""></li>
 
           <li class="dropdown-item px-0">
@@ -50,15 +67,15 @@
               <li><hr class="dropdown-divider"></li>
               
               <li class="dropdown-item px-0">
-                            <form method="POST">
+                            <!-- <form method="POST"> -->
                          
                             <x-dropdown-link
-                                    onclick=""
+                                    @click="logout"
                                                 class="text-decoration-none text-black ps-3">       
                                <i class="bi bi-door-open pe-1"></i>
                                Sign out
                             </x-dropdown-link>
-                        </form>        
+                        <!-- </form>         -->
                 </li>  
           
               <li class="dropdown-item px-0">
@@ -76,9 +93,9 @@
 <div class="1bb text-center col-md-7">
    
 <div class="mb-3 1bb">
-  <input type="email" class="form-control text-center fs-4" id="exampleInputEmail1" aria-describedby="emailHelp"
+  <input type="text" class="form-control text-center fs-4" id="inputScode"
   placeholder="">
-  <div id="emailHelp" class="form-text text-center">Введите код контроллера, например: 23</div>
+  <div id="inputScode" class="form-text text-center">Введите код контроллера, например: 23</div>
 </div>
 
 

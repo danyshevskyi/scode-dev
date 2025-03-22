@@ -6,8 +6,8 @@
 <div class="container d-flex justify-content-between px-4 1bb align-items-center mt-3">
         
         <div class="text-center pt-2">
-                <a href="https://dov.pp.ua/scod/" class="text-decoration-none text-black">
-                    <h5>SCOD CMD-V4</h5>
+                <a href="https://dov.pp.ua/scode/" class="text-decoration-none text-black">
+                    <h5>SCODE for CMD-V4</h5>
                 </a>
         </div>
         <div class="col-auto">

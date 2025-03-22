@@ -1,8 +1,48 @@
 <script setup>
+import { ref } from "vue"
+import axios from 'axios'
 
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
 
-function pressReg() {
-    alert('1111')
+const name = ref('null')
+const email = ref('')
+const pass = ref('')
+const pass_confirm = ref('')
+
+async function login() {
+   axios.get('https://dov.pp.ua/sanctum/csrf-cookie').then(response => {
+      axios.post("https://dov.pp.ua:8000/login",
+         {
+            email: email.value,
+            password: pass.value,
+         }
+      ).catch(error => {
+         console.log(error)
+      }).then(response => {
+         localStorage.setItem('user', JSON.stringify(response.data))
+         location.replace('https://dov.pp.ua/scode/')
+        })
+   
+   })
+}
+
+async function register() {
+   axios.get('https://127.0.0.1:8000/sanctum/csrf-cookie').then(response => {
+      axios.post("https://127.0.0.1:8000/register",
+         {
+            name: name.value,
+            email: email.value,
+            password: pass.value,
+            password_confirmation: pass_confirm.value,
+         }
+      ).catch(error => {
+         console.log(error)
+      }).then(response => {
+         localStorage.setItem('user', JSON.stringify(response.data))
+         location.replace('https://dov.pp.ua/scode/')
+        })
+   })
 }
 
 
@@ -64,6 +104,7 @@ function pressReg() {
     <div class="form-floating mb-3">
         <input id="authInputLogin"
                _name="email"
+               v-model="email"
                type="text"
                class="form-control form-control-lg border-secondary border-opacity-50"
                placeholder="name@example.com"
@@ -76,6 +117,7 @@ function pressReg() {
     <div class="col form-floating position-relative 1bb">
         <input id="authInputPass"
                _name="pass"
+               v-model="pass"
                type="password"
                class="form-control form-control-lg inputPassAuth border-secondary border-opacity-50"
                placeholder="Password"
@@ -104,7 +146,7 @@ function pressReg() {
     <div class="modal-footer">
         <button type="button"
                 class="btn btn-primary px-4 fs-5"
-                onclick="butAuth('analytics')">
+                @click="login">
                     &nbsp;Enter&nbsp;
         </button>
     </div>
@@ -116,8 +158,8 @@ function pressReg() {
 <!-------------------- Registration form --------------------->
 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-    <form method="POST" id="formReg"> 
-        <input name="keyPOST" value="reg" _id="auth" hidden>     
+    <!-- <form method="POST" id="formReg"> 
+        <input name="keyPOST" value="reg" _id="auth" hidden>      -->
 
 <div class="modal-body">
 
@@ -125,7 +167,7 @@ function pressReg() {
 
     <div class="form-floating mb-4">
         <input
-            name="email"
+            v-model="email"
             type="text"
             class="form-control form-control-lg border-secondary border-opacity-50"
             id="inputRegEmail"
@@ -139,7 +181,7 @@ function pressReg() {
 
     <div class="col form-floating position-relative mt-3">
       <input
-        name="pass"
+        v-model="pass"
         type="password"
         class="form-control form-control-lg border-secondary border-opacity-50 inputPassReg"
         id="inputRegPass1"
@@ -156,7 +198,7 @@ function pressReg() {
 
     <div class="col form-floating position-relative mt-3">
       <input    
-        name="pass"
+        v-model="pass_confirm"
         type="password"
         class="form-control form-control-lg border-secondary border-opacity-50 inputPassReg"
         id="inputRegPass2"
@@ -184,12 +226,12 @@ function pressReg() {
     <div class="modal-footer 1border-secondary 1border-opacity-50">
         <button type="button"
                 class="btn btn-primary px-4 fs-5"
-                onclick="butReg('analytics')">
+                @click="register">
                 Sign up
         </button>
     </div>
 
-    </form>
+    <!-- </form> -->
 </div>
 <!-------------------- /Registration form --------------------->
 
