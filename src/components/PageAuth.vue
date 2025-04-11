@@ -1,18 +1,21 @@
 <script setup>
 
 import axios from 'axios'
-import { ref } from 'vue'
+// import { ref } from 'vue'
+
+const appUrl = import.meta.env.VITE_APP_URL
+const apiUrl = import.meta.env.VITE_API_URL
 
 const user = JSON.parse(localStorage.getItem('user'))
 // const email = ref(user.email);
 
 function logout() {
-    axios.post('https://dov.pp.ua/logout').then(response => {  
+    axios.post(apiUrl + '/logout').then(response => {  
     }).catch(error => {
         console.log(error)
     }).then(response => {
         localStorage.removeItem('user')
-        location.replace('https://dov.pp.ua/scode/')
+        location.replace(appUrl)
     })
 }
 

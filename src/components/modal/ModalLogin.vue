@@ -5,9 +5,8 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 axios.defaults.withXSRFToken = true
 
-const baseUrl = import.meta.env.VITE_BASE_URL
-
-console.log(baseUrl)
+const appUrl = import.meta.env.VITE_APP_URL
+const apiUrl = import.meta.env.VITE_API_URL
 
 const name = ref('null')
 const email = ref('')
@@ -15,8 +14,8 @@ const pass = ref('')
 const pass_confirm = ref('')
 
 async function login() {
-   axios.get(baseUrl + 'sanctum/csrf-cookie').then(response => {
-      axios.post(baseUrl + 'login',
+   axios.get(apiUrl + '/sanctum/csrf-cookie').then(response => {
+      axios.post(apiUrl + '/login',
          {
             email: email.value,
             password: pass.value,
@@ -25,15 +24,15 @@ async function login() {
          console.log(error)
       }).then(response => {
          localStorage.setItem('user', JSON.stringify(response.data))
-         location.replace(baseUrl)
+         location.replace(appUrl)
         })
    
    })
 }
 
 async function register() {
-   axios.get('https://dov.pp.ua/sanctum/csrf-cookie').then(response => {
-      axios.post("https://dov.pp.ua/register",
+   axios.get(apiUrl + '/sanctum/csrf-cookie').then(response => {
+      axios.post(apiUrl+ '/register',
          {
             name: name.value,
             email: email.value,
@@ -44,7 +43,7 @@ async function register() {
          console.log(error)
       }).then(response => {
          localStorage.setItem('user', JSON.stringify(response.data))
-         location.replace('https://dov.pp.ua/scode/')
+         location.replace(appUrl)
         })
    })
 }

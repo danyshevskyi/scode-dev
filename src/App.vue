@@ -5,7 +5,6 @@ import PageNotAuth from './components/PageNotAuth.vue'
 import ModalAbout from './components/modal/ModalAbout.vue'
 import ModalLogin from './components/modal/ModalLogin.vue'
 
-
 const user = JSON.parse(localStorage.getItem('user'))
   
    let auth = ref(false)
