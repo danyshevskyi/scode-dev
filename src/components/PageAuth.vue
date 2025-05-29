@@ -1,13 +1,49 @@
 <script setup>
 
 import axios from 'axios'
-// import { ref } from 'vue'
+import { ref } from 'vue'
+import ModalScode from '../components/modal/ModalScode.vue'
 
 const appUrl = import.meta.env.VITE_APP_URL
 const apiUrl = import.meta.env.VITE_API_URL
 
 const user = JSON.parse(localStorage.getItem('user'))
-// const email = ref(user.email);
+
+const jsonResult = {
+                        status: null,
+                        data: {
+                                scode: null,
+                                text: null,
+                                comments: null
+                        }
+                   }
+
+const resultApiScode = ref(jsonResult)
+
+function getApiScode() {
+
+        let requestApi = {
+                scode: "14"
+        }
+        
+        let responseApi = {
+                status: true,
+                data: {
+                        scode: "11",
+                        text: "Text text text",
+                        comments: "comments"
+                }
+        }
+
+// console.log(responseApi.data.text)
+
+        return responseApi
+}
+
+function searchScode() {
+        resultApiScode.value = getApiScode()
+}
+
 
 function logout() {
     axios.post(apiUrl + '/logout').then(response => {  
@@ -105,8 +141,8 @@ function logout() {
 <button type="button"
         class="btn btn-dark col-5 col-md-3 mt-4"
         data-bs-toggle="modal"
-        data-bs-target="#mod_scod_show"
-        >Пошук</button>
+        data-bs-target="#ModalScode"
+        @click="searchScode">Пошук</button>
 
 </div>
 
@@ -115,17 +151,16 @@ function logout() {
 <!-- footer -->
 <div class="mx-auto fixed-bottom pb-3" style="max-width: 1000px">
   <a class="text-decoration-none text-black" href="https://www.linkedin.com/in/danyshevskyi/" target="blank"> 
-  <div class="text-center mt-3" style="font-size: 13px;">Oleksii Danyshevskyi &copy; 2024 
+  <div class="text-center mt-3" style="font-size: 13px;">Oleksii Danyshevskyi &copy; 2025 
   <i class="bi bi-linkedin"></i>
 </div>
 </a>
 </div>
 
 
-
+<ModalScode :resultApiScode="resultApiScode" />
 
 
 </template>
-
 <style scoped>
 </style>
