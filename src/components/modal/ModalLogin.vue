@@ -5,6 +5,7 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 axios.defaults.withXSRFToken = true
 
+const baseUrl = import.meta.env.VITE_BASE_URL
 const appUrl = import.meta.env.VITE_APP_URL
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -14,8 +15,8 @@ const pass = ref('')
 const pass_confirm = ref('')
 
 async function login() {
-   axios.get(apiUrl + '/sanctum/csrf-cookie').then(response => {
-      axios.post(apiUrl + '/login',
+   axios.get(baseUrl + '/sanctum/csrf-cookie').then(response => {
+      axios.post(baseUrl + '/login',
          {
             email: email.value,
             password: pass.value,

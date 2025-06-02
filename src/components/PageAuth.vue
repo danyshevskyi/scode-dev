@@ -4,10 +4,15 @@ import axios from 'axios'
 import { ref } from 'vue'
 import ModalScode from '../components/modal/ModalScode.vue'
 
+axios.defaults.withCredentials = true
+axios.defaults.withXSRFToken = true
+
 const appUrl = import.meta.env.VITE_APP_URL
 const apiUrl = import.meta.env.VITE_API_URL
 
 const user = JSON.parse(localStorage.getItem('user'))
+
+const scodeSearch = ref('')
 
 const jsonResult = {
                         status: null,
@@ -20,30 +25,65 @@ const jsonResult = {
 
 const resultApiScode = ref(jsonResult)
 
-function getApiScode() {
+async function getApiScode() {
 
-        let requestApi = {
-                scode: "14"
-        }
+        // let requestApi = {
+        //         scode: "14"
+        // }
         
-        let responseApi = {
-                status: true,
-                data: {
-                        scode: "11",
-                        text: "Text text text",
-                        comments: "comments"
-                }
-        }
+        // let responseApi = {
+        //         status: true,
+        //         data: {
+        //                 scode: "11",
+        //                 text: "Text text text",
+        //                 comments: "comments"
+        //         }
+        // }
 
 // console.log(responseApi.data.text)
 
-        return responseApi
+        // return responseApi
+
+axios.post(apiUrl + '/scode',
+                {
+                'scode' : scodeSearch.value
+                }
+        )
+        .catch(error => {
+                console.log(error)
+        })
+        .then(response => {
+                // console.log(JSON.stringify(response.data))
+
+                // resultApiScode =  JSON.stringify(response.data)
+
+                // console.log(resultApiScode)
+
+                return resultApiScode.value = response.data
+        })
+
+// console.log(scodeSearch.value)
 }
+
+
+
 
 function searchScode() {
-        resultApiScode.value = getApiScode()
-}
+        
+        // resultApiScode.value = getApiScode()
 
+        // resultApiScode.value = 
+        // {    
+        //         status: true,
+        //         data: {
+        //                 scode: "11",
+        //                 text: "Text text text",
+        //                 comments: "comments"
+        //         }
+        // }
+        getApiScode();
+
+}
 
 function logout() {
     axios.post(apiUrl + '/logout').then(response => {  
@@ -132,8 +172,12 @@ function logout() {
 <div class="1bb text-center col-md-7">
    
 <div class="mb-3 1bb">
-  <input type="text" class="form-control text-center fs-4" id="inputScode"
-  placeholder="">
+  
+<input type="text"
+        class="form-control text-center fs-4" id="inputScode"
+        placeholder=""
+        v-model="scodeSearch">
+
   <div id="inputScode" class="form-text text-center">Введите код контроллера, например: 23</div>
 </div>
 
