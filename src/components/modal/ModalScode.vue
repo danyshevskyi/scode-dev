@@ -14,32 +14,31 @@ const props = defineProps({
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">SCODE {{ resultApiScode.data.scode }}</h5> 
+        <h5 class="modal-title">Опис рішення</h5> 
         <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
   
-        <div class="mt-2 mx-auto">
+        <div class="mt-2 1mx-auto 1bb">
       
                
-              <div>
-                <p class="text-center t18 fw-bold mt-2">Опис проблеми</p>
-                <p class="1text-center t18 px-4">{{ resultApiScode.data.text }}</p>
+              <div class="container 1px-3">
+                <p class="text-center t18 fw-bold mt-2">Код помилки: {{ resultApiScode.data.scode }}</p>
+                <p class="text-center t18 fw-bold mt-2">{{ resultApiScode.data.error }}</p>
                 
+                <!-- <p class="text-center t18 px-4 mt-4 fw-bold">Опис помилки</p> -->
+                <p class="1text-center t18 1px-4 mx-4" style="text-align: justify;">{{ resultApiScode.data.solution }}</p>
+                <img :src="stacker" alt="stacker" class="mb-3 mx-auto 1bb">
                 <slot name="test"></slot>
                 
 
               </div>
 
                   
-                <img :src="stacker" alt="stacker"/>
+                
 
                   
                 
-                <a class="text-decoration-none text-black" href="https://www.linkedin.com/in/danyshevskyi/" target="_blank"> 
-                    <div class="text-center mt-3 mb-4" style="font-size: 13px;">Oleksii Danyshevskyi &copy; 2025    
-                    <i class="bi bi-linkedin"></i>
-                  </div>
-                </a>
+
                 
                 
 

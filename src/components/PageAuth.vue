@@ -18,8 +18,8 @@ const jsonResult = {
                         status: null,
                         data: {
                                 scode: null,
-                                text: null,
-                                comments: null
+                                error: null,
+                                solution: null
                         }
                    }
 
