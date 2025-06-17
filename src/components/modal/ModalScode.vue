@@ -14,21 +14,21 @@ const props = defineProps({
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Опис рішення</h5> 
+        <h5 class="modal-title">Код помилки: {{ resultApiScode.data.scode }}</h5> 
         <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
   
-        <div class="mt-2 1mx-auto 1bb">
+        <div class="mt-2">
       
                
-              <div class="container 1px-3">
-                <p class="text-center t18 fw-bold mt-2">Код помилки: {{ resultApiScode.data.scode }}</p>
-                <p class="text-center t18 fw-bold mt-2">{{ resultApiScode.data.error }}</p>
+              <div class="px-1">
+                <!-- <p class="text-center t18 fw-bold mt-2">Код помилки: {{ resultApiScode.data.scode }}</p> -->
+                <p class="text-center t18 fw-bold my-4 px-3">{{ resultApiScode.data.error }}</p>
                 
                 <!-- <p class="text-center t18 px-4 mt-4 fw-bold">Опис помилки</p> -->
-                <p class="1text-center t18 1px-4 mx-4" style="text-align: justify;">{{ resultApiScode.data.solution }}</p>
-                <img :src="stacker" alt="stacker" class="mb-3 mx-auto 1bb">
-                <slot name="test"></slot>
+                <p class="1text-center t18 1px-4 mx-2 px-3" style="text-align: justify;">{{ resultApiScode.data.solution }}</p>
+                <img :src="stacker" alt="stacker" class="mb-4 me-4 text-center">
+               
                 
 
               </div>

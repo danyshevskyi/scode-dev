@@ -32,8 +32,8 @@ async function login() {
 }
 
 async function register() {
-   axios.get(apiUrl + '/sanctum/csrf-cookie').then(response => {
-      axios.post(apiUrl+ '/register',
+   axios.get(baseUrl + '/sanctum/csrf-cookie').then(response => {
+      axios.post(baseUrl+ '/register',
          {
             name: name.value,
             email: email.value,

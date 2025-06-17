@@ -174,6 +174,7 @@ function logout() {
 <div class="mb-3 1bb">
   
 <input type="text"
+        autocomplete="off"
         class="form-control text-center fs-4" id="inputScode"
         placeholder=""
         v-model="scodeSearch">
