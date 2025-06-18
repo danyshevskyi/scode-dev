@@ -2,8 +2,8 @@
 import { ref } from "vue"
 import axios from 'axios'
 
-// axios.defaults.withCredentials = true
-// axios.defaults.withXSRFToken = true
+axios.defaults.withCredentials = true
+axios.defaults.withXSRFToken = true
 
 const baseUrl = import.meta.env.VITE_BASE_URL
 const appUrl = import.meta.env.VITE_APP_URL
@@ -32,14 +32,29 @@ async function register() {
    })
 }
 
+function passShow(input) {
+    let getInput = document.querySelectorAll('.' + input);
+        let getEye = document.querySelector('#' + input);
+            for(let i = 0; i < getInput.length; i++) {  
+                    if(getInput[i].type === "password")
+                    {
+                        getInput[i].type = "text";
+                    } 
+                    else 
+                    {
+                        getInput[i].type = "password";
+                    }
+            }
+                getEye.classList.toggle('bi-eye-slash');
+            getEye.classList.toggle('bi-eye');
+}
+
+
 </script>
 
 <template>
 
 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-<!-- <form method="POST" id="formReg"> 
-    <input name="keyPOST" value="reg" _id="auth" hidden>      -->
 
 <div class="modal-body px-4">
 
@@ -73,23 +88,24 @@ async function register() {
     <input
             v-model="pass"
             type="password"
-            class="form-control border-secondary border-opacity-50"
+            class="form-control border-secondary border-opacity-50 inputPassReg"
             id="password"
             maxlength="50"
             required>
             
         <div class="col-2 position-absolute top-0 end-0 text-center pb-1"
              style="margin-top: 34px;" 
-             onclick="passShow('inputPassAuth')">
-             <i class="bi bi-eye fs-4 text-secondary text-center" id="inputPassAuth"></i>
+             @click="passShow('inputPassReg')">
+             <i class="bi bi-eye fs-4 text-secondary text-center" id="inputPassReg"></i>
         </div>  
 </div>
 
 <div>
     <label for="password_confirm" class="form-label">Confirm Password</label>
     <input
+            v-model="pass_confirm"
             type="password"
-            class="form-control border-secondary border-opacity-50"
+            class="form-control border-secondary border-opacity-50 inputPassReg"
             id="password_confirm">
 </div>
 

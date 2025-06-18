@@ -9,6 +9,7 @@ axios.defaults.withXSRFToken = true
 
 const appUrl = import.meta.env.VITE_APP_URL
 const apiUrl = import.meta.env.VITE_API_URL
+const baseUrl = import.meta.env.VITE_BASE_URL
 
 const user = JSON.parse(localStorage.getItem('user'))
 
@@ -86,7 +87,7 @@ function searchScode() {
 }
 
 function logout() {
-    axios.post(apiUrl + '/logout').then(response => {  
+    axios.post(baseUrl + '/logout').then(response => {  
     }).catch(error => {
         console.log(error)
     }).then(response => {
@@ -172,12 +173,14 @@ function logout() {
 <div class="1bb text-center col-md-7">
    
 <div class="mb-3 1bb">
-  
+
+<form autocomplete="off">
 <input type="text"
         autocomplete="off"
         class="form-control text-center fs-4" id="inputScode"
         placeholder=""
         v-model="scodeSearch">
+</form>
 
   <div id="inputScode" class="form-text text-center">Введите код контроллера, например: 23</div>
 </div>

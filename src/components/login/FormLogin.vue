@@ -2,8 +2,8 @@
 import { ref } from "vue"
 import axios from 'axios'
 
-// axios.defaults.withCredentials = true
-// axios.defaults.withXSRFToken = true
+axios.defaults.withCredentials = true
+axios.defaults.withXSRFToken = true
 
 const baseUrl = import.meta.env.VITE_BASE_URL
 const appUrl = import.meta.env.VITE_APP_URL
@@ -11,6 +11,7 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 const email = ref('')
 const pass = ref('')
+const rem = ref('')
 
 async function login() {
    axios.get(baseUrl + '/sanctum/csrf-cookie').then(response => {
@@ -18,6 +19,7 @@ async function login() {
          {
             email: email.value,
             password: pass.value,
+            remember: rem.value,
          }
       ).catch(error => {
          console.log(error)
@@ -29,69 +31,95 @@ async function login() {
    })
 }
 
+function passShow(input) {
+    let getInput = document.querySelectorAll('.' + input);
+        let getEye = document.querySelector('#' + input);
+            for(let i = 0; i < getInput.length; i++) {  
+                    if(getInput[i].type === "password")
+                    {
+                        getInput[i].type = "text";
+                    } 
+                    else 
+                    {
+                        getInput[i].type = "password";
+                    }
+            }
+                getEye.classList.toggle('bi-eye-slash');
+            getEye.classList.toggle('bi-eye');
+}
+
 </script>
 
 <template>
-        <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div class="modal-body">
+<div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+   <div class="modal-body px-4">
             
             <div class="text-center text-danger mb-3"
                  id="alertLogin"
                  hidden>
                  Sorry, the login or password is incorrect!
             </div>
+            <form>
 
-    <div class="form-floating mb-3">
-        <input id="authInputLogin"
-               _name="email"
-               v-model="email"
-               type="text"
-               class="form-control form-control-lg border-secondary border-opacity-50"
-               placeholder="name@example.com"
-               maxlength="50"
-               required>
-            <label for="authInputLogin">
-            <span class="text-secondary">Email</span></label>
-    </div>
+<div class="mb-3">
+    <label for="email" class="form-label mb-1">Email</label>
+    <input
+            v-model="email"
+            type="email"
+            class="form-control border-secondary border-opacity-50"
+            id="email"
+            maxlength="50"
+            required>
+</div>
 
-    <div class="col form-floating position-relative 1bb">
-        <input id="authInputPass"
-               _name="pass"
-               v-model="pass"
-               type="password"
-               class="form-control form-control-lg inputPassAuth border-secondary border-opacity-50"
-               placeholder="Password"
-               maxlength="50"
-               required>
-               <label for="authInputPass">
-               <span class="text-secondary">Password</span></label>
-        <div class="col-2 position-absolute top-0 end-0 1mt-2 text-center 1bb pb-1"
-             style="margin-top: 11px;" 
-             onclick="passShow('inputPassAuth')">
-             <i class="bi bi-eye fs-4 text-secondary text-center 1py-1" id="inputPassAuth"></i>
-        </div>      
-    </div>
 
-    <div class="form-check mt-3 t18">
+<div class="mb-3 position-relative">
+   <label for="password" class="form-label mb-1">Password</label>
+   <input
+            v-model="pass"
+            type="password"
+            class="form-control border-secondary border-opacity-50 inputPassLog"
+            id="password"
+            maxlength="50"
+            required>
+            
+        <div class="col-2 position-absolute top-0 end-0 text-center pb-1"
+             style="margin-top: 30px;" 
+             @click="passShow('inputPassLog')">
+             <i class="bi bi-eye fs-4 text-secondary text-center" id="inputPassLog"></i>
+        </div>  
+</div>
+
+
+<div class="form-check mt-3">
         <input id="authRem"
+               v-model="rem"
                class="form-check-input border-secondary border-opacity-50"
                type="checkbox"
-               _name="rem"
-               value="1">
+               _name="rem">
                <label class="form-check-label" for="authRem">Remember me</label>
     </div>
 
-    </div>
-    
-    <div class="modal-footer">
-        <button type="button"
-                class="btn btn-primary px-4 fs-5"
+
+
+    <div class="text-end mt-3 py-2">
+      <a href="https://dov.pp.ua/forgot-password">
+         <span class="me-3 text-decoration-underline text-secondary">Forgot your password?</span>
+      </a> 
+      <button type="button"
+                class="btn btn-dark px-4"
                 @click="login">
-                    &nbsp;Enter&nbsp;
+                Log in
         </button>
     </div>
 
+</form>
+
 </div>
+   
+    </div>
+
+
 </template>
 
 <style scoped>
