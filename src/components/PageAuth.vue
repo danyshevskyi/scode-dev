@@ -11,7 +11,9 @@ const appUrl = import.meta.env.VITE_APP_URL
 const apiUrl = import.meta.env.VITE_API_URL
 const baseUrl = import.meta.env.VITE_BASE_URL
 
-const user = JSON.parse(localStorage.getItem('user'))
+const user = ref(JSON.parse(localStorage.getItem('user')))
+
+console.log(user.name)
 
 const scodeSearch = ref('')
 
@@ -117,7 +119,7 @@ function logout() {
 </button>    
   
         <ul class="dropdown-menu">
-      <li class="dropdown-item fw-semibold" id="email">{{ email }}</li>
+      <li class="dropdown-item fw-semibold" id="email">{{ user.email }}</li>
           <li><hr class=""></li>
 
           <li class="dropdown-item px-0">

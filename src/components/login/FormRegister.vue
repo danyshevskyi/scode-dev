@@ -14,6 +14,10 @@ const email = ref('')
 const pass = ref('')
 const pass_confirm = ref('')
 
+const errorEmail = ref('')
+const errorName = ref('')
+const errorPass = ref('')
+
 async function register() {
    axios.get(baseUrl + '/sanctum/csrf-cookie').then(response => {
       axios.post(baseUrl+ '/register',
@@ -24,8 +28,31 @@ async function register() {
             password_confirmation: pass_confirm.value,
          }
       ).catch(error => {
-         console.log(error)
-      }).then(response => {
+
+        errorEmail.value = null
+            errorName.value = null
+                errorPass.value = null
+
+        const objectErrors = error.response.data.errors
+
+        const arrayErrors = Object.entries(objectErrors)
+
+        arrayErrors.forEach(function(item) {           
+            if(item[0] == 'name')
+            {
+                errorName.value = item[1][0]
+            }
+            else if (item[0] == 'email')
+            {
+                errorEmail.value= item[1][0]
+            }
+            else if (item[0] == 'password')
+            {
+                errorPass.value = item[1][0]
+            }
+        }        
+)   
+    }).then(response => {
          localStorage.setItem('user', JSON.stringify(response.data))
          location.replace(appUrl)
         })
@@ -49,7 +76,6 @@ function passShow(input) {
             getEye.classList.toggle('bi-eye');
 }
 
-
 </script>
 
 <template>
@@ -58,12 +84,11 @@ function passShow(input) {
 
 <div class="modal-body px-4">
 
-<div id="wrongLogin" class="text-center text-danger mb-3" style="display: none;"></div>
-
 <form>
 
+<div class="text-center text-danger">{{ errorName }}</div>
 <div class="mb-3">
-    <label for="name" class="form-label">Name</label>
+    <label for="name" class="form-label mb-1">Name</label>
     <input
             v-model="name"
             type="text"
@@ -71,8 +96,9 @@ function passShow(input) {
             id="name">
 </div>
 
+<div class="text-center text-danger">{{ errorEmail }}</div>
 <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
+    <label for="email" class="form-label mb-1">Email</label>
     <input
             v-model="email"
             type="email"
@@ -82,9 +108,9 @@ function passShow(input) {
             required>
 </div>
 
-
+<div class="text-center text-danger">{{ errorPass }}</div>
 <div class="mb-3 position-relative">
-    <label for="password" class="form-label">Password</label>
+    <label for="password" class="form-label mb-1">Password</label>
     <input
             v-model="pass"
             type="password"
@@ -94,14 +120,14 @@ function passShow(input) {
             required>
             
         <div class="col-2 position-absolute top-0 end-0 text-center pb-1"
-             style="margin-top: 34px;" 
+             style="margin-top: 31px;" 
              @click="passShow('inputPassReg')">
              <i class="bi bi-eye fs-4 text-secondary text-center" id="inputPassReg"></i>
         </div>  
 </div>
 
 <div>
-    <label for="password_confirm" class="form-label">Confirm Password</label>
+    <label for="password_confirm" class="form-label mb-1">Confirm Password</label>
     <input
             v-model="pass_confirm"
             type="password"
@@ -111,7 +137,7 @@ function passShow(input) {
 
 
 <div class="form-text mt-3">
-    <div id="passwordHelpBlock" class="form-text"> Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+    <div id="passwordHelpBlock" class="form-text"> The password field must be at least 8 characters
     </div>
 </div>
 

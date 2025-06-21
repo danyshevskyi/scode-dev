@@ -3,6 +3,11 @@ import { ref } from "vue"
 import axios from 'axios'
 import FormRegister from './FormRegister.vue'
 import FormLogin from './FormLogin.vue'
+
+const isActiveSignIn = ref('')
+const isActiveReg = ref('')
+
+
 </script>
 
 <template>
@@ -12,9 +17,9 @@ import FormLogin from './FormLogin.vue'
     <div class="modal-content">
 
 <!------------------- navigation ------------------->
-<div class="nav nav-tabs pt-3 mb-2 t18 border-opacity-100" id="nav-tab" role="tablist">
+<div class="nav nav-tabs pt-3 mb-2 border-secondary border-opacity-50" id="nav-tab" role="tablist">
 
-    <button class="nav-link but_tab_reg active"
+    <button class="nav-link but_tab_reg text-dark active"
             id="nav-home-tab"
             data-bs-toggle="tab"
             data-bs-target="#nav-home"
@@ -25,7 +30,7 @@ import FormLogin from './FormLogin.vue'
             Sign in
     </button>
     
-    <button class="nav-link"
+    <button class="nav-link text-dark"
             id="nav-profile-tab"
             data-bs-toggle="tab"
             data-bs-target="#nav-profile"

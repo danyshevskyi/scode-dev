@@ -12,9 +12,10 @@ const apiUrl = import.meta.env.VITE_API_URL
 const email = ref('')
 const pass = ref('')
 const rem = ref('')
+const isHidden = ref(true)
 
-async function login() {
-   axios.get(baseUrl + '/sanctum/csrf-cookie').then(response => {
+async function login() { 
+    axios.get(baseUrl + '/sanctum/csrf-cookie').then(response => {
       axios.post(baseUrl + '/login',
          {
             email: email.value,
@@ -22,12 +23,11 @@ async function login() {
             remember: rem.value,
          }
       ).catch(error => {
-         console.log(error)
+            isHidden.value = false
       }).then(response => {
          localStorage.setItem('user', JSON.stringify(response.data))
          location.replace(appUrl)
-        })
-   
+        }) 
    })
 }
 
@@ -54,13 +54,12 @@ function passShow(input) {
 <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
    <div class="modal-body px-4">
             
-            <div class="text-center text-danger mb-3"
+            <div class="text-center text-danger mb-2"
                  id="alertLogin"
-                 hidden>
+                 :hidden="isHidden">
                  Sorry, the login or password is incorrect!
             </div>
-            <form>
-
+<form>
 <div class="mb-3">
     <label for="email" class="form-label mb-1">Email</label>
     <input
