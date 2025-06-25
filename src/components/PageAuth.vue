@@ -170,9 +170,9 @@ function logout() {
 
 
 
-<div class="container d-flex align-items-center justify-content-center" style="height: 70vh;">
+<div class="container d-flex align-items-center justify-content-center" style="height: 90vh;">
 
-<div class="1bb text-center col-md-7">
+<div class="1bb text-center col-md-7 mt-5">
    
 <div class="mb-3 1bb">
 
@@ -189,14 +189,23 @@ function logout() {
 
 
 <button type="button"
-        class="btn btn-dark col-5 col-md-3 mt-4"
+        class="btn btn-dark col-5 col-md-3 1mt-4 mb-5"
         data-bs-toggle="modal"
         data-bs-target="#ModalScode"
         @click="searchScode">Пошук</button>
 
+        <!-- <div class="mt-5 text-center"><i class="bi bi-book me-2"></i>Перегляд всіх скодів</div>        -->
+        <div class="mt-5 text-center">
+                <button type="button"
+                        class="btn btn-link text-dark text-decoration-none"
+                        data-bs-toggle="modal"
+                        data-bs-target="#ModalScodesAll">
+                        <i class="bi bi-book me-2"></i>Перегляд всіх скодів</button>
+        </div>
+        
+</div>
 </div>
 
-</div>
 
 <!-- footer -->
 <div class="mx-auto fixed-bottom pb-3" style="max-width: 1000px">
