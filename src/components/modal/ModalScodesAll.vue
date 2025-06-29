@@ -1,59 +1,45 @@
 <script setup>
+import axios from 'axios'
+import { ref } from 'vue'
+
+const apiUrl = import.meta.env.VITE_API_URL
+
+const allScodes = ref()
+
+axios.post(apiUrl + '/scode/all',
+        )
+        .catch(error => {
+                console.log(error)
+        })
+        .then(response => {
+          console.log(response.data)
+            allScodes.value = response.data  
+        })
+
 </script>
 
 <template>
 
 <div class="modal fade" tabindex="-1" id="ModalScodesAll">
-    <div class="modal-dialog">
+    
+  <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header sticky-top bg-white 1opacity-0">
           <h5 class="modal-title"><i class="bi bi-book me-2"></i>Перегляд всіх скодів</h5> 
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
   
-  <div class="mt-2 px-2">
+  <div class="mt-2 px-1">
       
-  <div class="container col-auto 1t18 text-center py-5">
-      
+<div class="container col-auto">
 
-    <table class="table table-bordered">
-  <tbody>
-    <tr>
-      <td class="text-start">
-        Scode 82
-        <hr>
-        Датчик порожньої касети PSE2 брудний
-<hr>
-Очистіть фотодатчик «PSE2» у відповідному вертикальному модулі та відповідну призму в притискному каретці касети. Після цього виконайте скидання (перемістіть CMD-V4 у положення видачі). Перевірте ступінь забруднення всіх фотодатчиків у KDIAG за допомогою тестової програми за допомогою команди самотестування «DYK» (Запит стану фотодатчиків, підсилювачів фотодатчиків): Фотодатчики, які мають стан «3» або вище, слід очистити. Покращення стану можна запитати після скидання.
-                Примітка: після першого виникнення цієї помилки CMD-V4 може продовжувати працювати, доки операція не буде автоматично зупинена при подальшому зростанні забруднення.
+<div class="rounded border mb-3" v-for="(scode, index) in allScodes">
+  <div class="p-2 fw-bolder">Scode {{ scode.scode }}</div>
+  <div class="p-2">{{ scode.error }}</div>
+  <div class="p-2">{{ scode.solution }}</div>
+</div>
 
-
-      </td>
-    </tr>
-  </tbody>
-  
-</table>
-
-
-<table class="table table-bordered">
-  <tbody>
-    <tr>
-      <td class="text-start">
-        Scode 82
-        <hr>
-        Датчик порожньої касети PSE2 брудний
-<hr>
-Очистіть фотодатчик «PSE2» у відповідному вертикальному модулі та відповідну призму в притискному каретці касети. Після цього виконайте скидання (перемістіть CMD-V4 у положення видачі). Перевірте ступінь забруднення всіх фотодатчиків у KDIAG за допомогою тестової програми за допомогою команди самотестування «DYK» (Запит стану фотодатчиків, підсилювачів фотодатчиків): Фотодатчики, які мають стан «3» або вище, слід очистити. Покращення стану можна запитати після скидання.
-                Примітка: після першого виникнення цієї помилки CMD-V4 може продовжувати працювати, доки операція не буде автоматично зупинена при подальшому зростанні забруднення.
-
-
-      </td>
-    </tr>
-  </tbody>
-  
-</table>
-
-  </div>
+</div>
   
 
   
