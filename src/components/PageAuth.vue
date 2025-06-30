@@ -117,60 +117,50 @@ function logout() {
         data-bs-toggle = "dropdown">
         Menu
 </button>    
-  
-        <ul class="dropdown-menu">
-      <li class="dropdown-item fw-semibold" id="email">{{ user.email }}</li>
-          <li><hr class=""></li>
 
-          <li class="dropdown-item px-0">
-                      <a class="btn btn-link text-decoration-none text-start text-black col-12"
-                              href="" role="button">
-                                      <i class="bi bi-person ps-1 pe-2 fs-5"></i>Profile</a>
-          </li>
+<ul class="dropdown-menu py-0">
+        <li class="dropdown-item fw-semibold py-2 my-1" id="email">{{ user.email }}</li>
+        <li><hr class="p-0 my-0"></li>
+        <li class="dropdown-item px-0 1bb mt-1">
+                <buttom type="buttom"
+                        class="btn btn-link text-decoration-none text-start text-black col-12"
+                        data-bs-toggle = "modal"
+                        data-bs-target = "#ModalScodesAll">
+                        <i class="bi bi-book ps-1 pe-2"></i>Всі скоди
+                </buttom>  
+        </li>
+        <li class="dropdown-item px-0">
+                <buttom type="buttom"
+                        class="btn btn-link text-decoration-none text-start text-black col-12"
+                        data-bs-toggle = "modal"
+                        data-bs-target = "#mod_review">
+                        <i class="bi bi-pen ps-1 pe-2"></i>Залишити відгук
+                </buttom>
+        </li>
+        <li class="dropdown-item px-0 mb-2">
+                <buttom type="buttom"
+                        class="btn btn-link text-decoration-none text-start text-black col-12"
+                        data-bs-toggle = "modal"
+                        data-bs-target = "#mod_about">
+                        <i class="bi bi-info-circle ps-1 pe-2"></i>Про додаток
+                </buttom>
+        </li>               
+        <li><hr class="p-0 my-0"></li>
+        <li class="dropdown-item px-0 my-0 1bb">
+                <buttom type="buttom"
+                        class="btn btn-link text-decoration-none text-start text-black col-12"
+                        @click="logout">
+                        <i class="bi bi-info-circle ps-1 pe-2"></i>Вихід
+                </buttom>
+        </li>  
+</ul>
 
-          <li class="dropdown-item px-0">
-                  <buttom type="buttom"
-                          class="btn btn-link text-decoration-none text-start text-black col-12"
-                          data-bs-toggle = "modal"
-                          data-bs-target = "#mod_review">
-                          <i class="bi bi-pen ps-1 pe-2"></i>Contact us
-                  </buttom>
-              
-              </li>
-              <li class="dropdown-item px-0">
-                  <buttom type="buttom"
-                          class="btn btn-link text-decoration-none text-start text-black col-12"
-                          data-bs-toggle = "modal"
-                          data-bs-target = "#mod_about">
-                          <i class="bi bi-info-circle ps-1 pe-2"></i>About
-                  </buttom>
-              </li>               
-
-              <li><hr class="dropdown-divider"></li>
-              
-              <li class="dropdown-item px-0">
-                            <!-- <form method="POST"> -->
-                         
-                            <x-dropdown-link
-                                    @click="logout"
-                                                class="text-decoration-none text-black ps-3">       
-                               <i class="bi bi-door-open pe-1"></i>
-                               Sign out
-                            </x-dropdown-link>
-                        <!-- </form>         -->
-                </li>  
-          
-              <li class="dropdown-item px-0">
-                        
-              </li>       
-      </ul>
-  </div>
-
+</div>
 </div>
 
 
 
-<div class="container d-flex align-items-center justify-content-center" style="height: 90vh;">
+<div class="container d-flex align-items-center justify-content-center" style="height: 75vh;">
 
 <div class="1bb text-center col-md-7 mt-5">
    
@@ -187,22 +177,13 @@ function logout() {
   <div id="inputScode" class="form-text text-center">Введите код контроллера, например: 23</div>
 </div>
 
-
 <button type="button"
         class="btn btn-dark col-5 col-md-3 1mt-4 mb-5"
         data-bs-toggle="modal"
         data-bs-target="#ModalScode"
-        @click="searchScode">Пошук</button>
-
-        <!-- <div class="mt-5 text-center"><i class="bi bi-book me-2"></i>Перегляд всіх скодів</div>        -->
-        <div class="mt-5 text-center">
-                <button type="button"
-                        class="btn btn-link text-dark text-decoration-none"
-                        data-bs-toggle="modal"
-                        data-bs-target="#ModalScodesAll">
-                        <i class="bi bi-book me-2"></i>Перегляд всіх скодів</button>
-        </div>
-        
+        @click="searchScode">Пошук
+</button>
+    
 </div>
 </div>
 

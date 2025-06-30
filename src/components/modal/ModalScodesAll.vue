@@ -31,7 +31,7 @@ axios.post(apiUrl + '/scode/all',
   
   <div class="mt-2 px-1">
       
-<div class="container col-auto">
+<div class="container col-auto pt-2">
 
 <div class="rounded border mb-3" v-for="(scode, index) in allScodes">
   <div class="p-2 fw-bolder">Scode {{ scode.scode }}</div>
