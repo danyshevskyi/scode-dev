@@ -13,77 +13,59 @@ const baseUrl = import.meta.env.VITE_BASE_URL
 
 const user = ref(JSON.parse(localStorage.getItem('user')))
 
-console.log(user.name)
-
 const scodeSearch = ref('')
+const jsonEmptyTemplate = ref(
+        {
+                data: {
+                        status: "",
+                        scode: null,
+                        error: "Вказаний scode не знайдений",
+                        solution: "Переглянути список scode можна в меню \"всі скоди\""
+                }
+        }
+)
 
-const jsonResult = {
-                        status: null,
-                        data: {
-                                scode: null,
-                                error: null,
-                                solution: null
-                        }
-                   }
-
-const resultApiScode = ref(jsonResult)
+const resultApiScode = ref()
+resultApiScode.value = jsonEmptyTemplate.value
 
 async function getApiScode() {
 
-        // let requestApi = {
-        //         scode: "14"
-        // }
         
-        // let responseApi = {
-        //         status: true,
-        //         data: {
-        //                 scode: "11",
-        //                 text: "Text text text",
-        //                 comments: "comments"
-        //         }
-        // }
 
-// console.log(responseApi.data.text)
+        axios.post(apiUrl + '/scode',
+                        {
+                        'scode' : scodeSearch.value
+                        }
+                )
+                .catch(error => {
+                        console.log(error)
+                })
+                .then(response => {
+                        console.log(response.data)
+                        
+                        if(response.data.status == true) {
+                                resultApiScode.value = response.data
 
-        // return responseApi
+                                console.log('true')
+                        } else {
+                                console.log('false')
+                                resultApiScode.value = jsonEmptyTemplate.value
 
-axios.post(apiUrl + '/scode',
-                {
-                'scode' : scodeSearch.value
-                }
-        )
-        .catch(error => {
-                console.log(error)
-        })
-        .then(response => {
-                // console.log(JSON.stringify(response.data))
+                                console.log(resultApiScode)
+                        }
 
-                // resultApiScode =  JSON.stringify(response.data)
+                        
+                })
+                
+                scodeSearch.value = null
 
-                // console.log(resultApiScode)
-
-                return resultApiScode.value = response.data
-        })
-
-// console.log(scodeSearch.value)
-}
+        }
 
 
 
 
 function searchScode() {
-        
-        // resultApiScode.value = getApiScode()
 
-        // resultApiScode.value = 
-        // {    
-        //         status: true,
-        //         data: {
-        //                 scode: "11",
-        //                 text: "Text text text",
-        //                 comments: "comments"
-        //         }
-        // }
         getApiScode();
 
 }
@@ -174,7 +156,7 @@ function logout() {
         v-model="scodeSearch">
 </form>
 
-  <div id="inputScode" class="form-text text-center">Введите код контроллера, например: 23</div>
+  <div class="form-text text-center">Введите код контроллера, например: 23</div>
 </div>
 
 <button type="button"

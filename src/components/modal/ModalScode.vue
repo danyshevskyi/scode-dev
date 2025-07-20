@@ -6,6 +6,15 @@ const props = defineProps({
   resultApiScode: Object
 })
 
+const resultIsTrue = ref()
+const www = ref('')
+
+  // if(resultApiScode.data.status == true) {
+  //   resultIsTrue.value = true 
+  // } else {
+  //   resultIsTrue.value = false
+  // }
+
 </script>
 
 <template>
@@ -14,7 +23,7 @@ const props = defineProps({
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Код помилки: {{ resultApiScode.data.scode }}</h5> 
+        <h5 class="modal-title" v-if="resultApiScode.data.scode !== null">Код помилки: {{ resultApiScode.data.scode }}</h5> 
         <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
   
@@ -27,21 +36,12 @@ const props = defineProps({
                 
                 <!-- <p class="text-center t18 px-4 mt-4 fw-bold">Опис помилки</p> -->
                 <p class="1text-center t18 1px-4 mx-2 px-3" style="text-align: justify;">{{ resultApiScode.data.solution }}</p>
-                <img :src="stacker" alt="stacker" class="mb-4 me-4 text-center">
+                <img :src="stacker" alt="stacker" class="mb-4 me-4 text-center" v-if="resultApiScode.data.scode !== null">
+               
                
                 
 
               </div>
-
-                  
-                
-
-                  
-                
-
-                
-                
-
       </div>
     </div>
   </div>
