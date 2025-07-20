@@ -115,7 +115,7 @@ function logout() {
                 <buttom type="buttom"
                         class="btn btn-link text-decoration-none text-start text-black col-12"
                         data-bs-toggle = "modal"
-                        data-bs-target = "#mod_review">
+                        data-bs-target = "#ModalFeedback">
                         <i class="bi bi-pen ps-1 pe-2"></i>Залишити відгук
                 </buttom>
         </li>
