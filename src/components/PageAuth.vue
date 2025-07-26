@@ -19,8 +19,8 @@ const jsonEmptyTemplate = ref(
                 data: {
                         status: "",
                         scode: null,
-                        error: "Вказаний scode не знайдений",
-                        solution: "Переглянути список scode можна в меню \"всі скоди\""
+                        error: "Вказаний скод не знайдений!",
+                        solution: "Переглянути список скодів можна в меню \"всі скоди\"."
                 }
         }
 )

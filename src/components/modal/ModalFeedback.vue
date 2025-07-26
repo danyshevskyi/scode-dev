@@ -4,8 +4,9 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 const baseUrl = import.meta.env.VITE_BASE_URL
+const apiUrl = import.meta.env.VITE_API_URL
 
-const project = ref('scode')
+const project = ref(2)
 const textFeedback = ref('')
 const user = ref(JSON.parse(localStorage.getItem('user')))
 
@@ -17,11 +18,11 @@ function sendFeedback() {
     vTextarea.value = !vTextarea.value
         vOk.value = !vOk.value
     
-    axios.post(baseUrl + '/feedback',
+    axios.post(apiUrl + '/feedback',
          {
-            project: project.value,
-            textFeedbeck: textFeedback.value,
-            userId: user.value.id
+            project_id: project.value,
+            user_id: user.value.id,
+            feedback_text: textFeedback.value
          }
       ).catch(error => {
           
