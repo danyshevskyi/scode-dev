@@ -16,19 +16,17 @@
   <div class="container col-auto t18">
       
     <p class="mt-1 mb-0" style="text-align: justify; text-indent: 10px;">
-      <span class="fw-medium"><i class="bi bi-copy pe-1"></i>English Cards</span> is a free web-application for creating
-        your own flashcards with words, phrases, sentences or dialogues.
+      <span class="fw-medium"><i class="bi bi-copy pe-1"></i>Scode</span> це додаток пошуку рішень для інженерів з обслуговування банкоматів WincorNixdorf на базі контролерів CMD-V4.  
     </p>
   
     <p class="1mb-0 my-2 1bb" style="text-align: justify; text-indent: 25px;">
       
-      <span class="fw-medium">For example</span>, when you want to learn the top English words - just record them on the
-        cards and they will always be with you on your smartphone or laptop.
+      <span class="fw-medium">Дозволяє</span>, знаходити опис та рішення несправностей по коду помилки контролера з відображенням схеми диспенсора. Також є довідник всіх скодів, описів та рішень.
   
     </p>
   
     <p class="mb-2" style="text-align: justify; text-indent: 25px;">
-      <span class="fw-medium">Everything is saved</span> in the cloud and accessible on any device at:
+      <span class="fw-medium">Якщо ви маєте досвіт з обслуговування банкоматів, надсилайте свої рішення по певним скодам й ми зробимо найкращі практики.</span>
     </p>
   
     <p class="text-center">

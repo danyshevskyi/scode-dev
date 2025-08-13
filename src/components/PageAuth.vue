@@ -10,9 +10,7 @@ axios.defaults.withXSRFToken = true
 const appUrl = import.meta.env.VITE_APP_URL
 const apiUrl = import.meta.env.VITE_API_URL
 const baseUrl = import.meta.env.VITE_BASE_URL
-
 const user = ref(JSON.parse(localStorage.getItem('user')))
-
 const scodeSearch = ref('')
 const jsonEmptyTemplate = ref(
         {
@@ -24,14 +22,11 @@ const jsonEmptyTemplate = ref(
                 }
         }
 )
-
 const resultApiScode = ref()
+
 resultApiScode.value = jsonEmptyTemplate.value
 
 async function getApiScode() {
-
-        
-
         axios.post(apiUrl + '/scode',
                         {
                         'scode' : scodeSearch.value
@@ -41,8 +36,6 @@ async function getApiScode() {
                         console.log(error)
                 })
                 .then(response => {
-                        console.log(response.data)
-                        
                         if(response.data.status == true) {
                                 resultApiScode.value = response.data
 
@@ -52,17 +45,10 @@ async function getApiScode() {
                                 resultApiScode.value = jsonEmptyTemplate.value
 
                                 console.log(resultApiScode)
-                        }
-
-                        
-                })
-                
+                        }      
+                })                
                 scodeSearch.value = null
-
-        }
-
-
-
+}
 
 function searchScode() {
 
@@ -123,9 +109,26 @@ function logout() {
                 <buttom type="buttom"
                         class="btn btn-link text-decoration-none text-start text-black col-12"
                         data-bs-toggle = "modal"
+                        data-bs-target = "#ModalAddDesktop">
+                        <i class="bi bi-box-arrow-in-down-left ps-1 pe-2"></i>Додати на робочий стіл
+                </buttom>
+        </li> 
+        <li class="dropdown-item px-0 mb-2">
+                <buttom type="buttom"
+                        class="btn btn-link text-decoration-none text-start text-black col-12"
+                        data-bs-toggle = "modal"
                         data-bs-target = "#mod_about">
                         <i class="bi bi-info-circle ps-1 pe-2"></i>Про додаток
                 </buttom>
+        </li>
+        <li><hr class="p-0 my-0"></li>
+        <li class="dropdown-item px-0 mb-0">
+                <a href="https://dov.pp.ua/miles" target="_blank">
+                        <buttom type="buttom"
+                                class="btn btn-link text-decoration-none text-start text-black col-12">
+                                <i class="bi bi-car-front ps-1 pe-2"></i>Пробіг авто
+                        </buttom>
+                </a>
         </li>               
         <li><hr class="p-0 my-0"></li>
         <li class="dropdown-item px-0 my-0 1bb">

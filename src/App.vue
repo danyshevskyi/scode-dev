@@ -6,6 +6,7 @@ import ModalAbout from './components/modal/ModalAbout.vue'
 import ModalLogin from './components/login/ModalLogin.vue'
 import ModalScodesAll from './components/modal/ModalScodesAll.vue'
 import ModalFeedback from './components/modal/ModalFeedback.vue'
+import ModalAddDesktop from './components/modal/ModalAddDesktop.vue'
 
 const user = JSON.parse(localStorage.getItem('user'))
   
@@ -29,6 +30,7 @@ const user = JSON.parse(localStorage.getItem('user'))
 <ModalLogin />
 <ModalScodesAll />
 <ModalFeedback />
+<ModalAddDesktop />
 
 </template>
 
