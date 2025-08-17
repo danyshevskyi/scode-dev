@@ -97,6 +97,15 @@ function logout() {
                         <i class="bi bi-book ps-1 pe-2"></i>Всі скоди
                 </buttom>  
         </li>
+        <li class="dropdown-item px-0 mb-2">
+                <buttom type="buttom"
+                        class="btn btn-link text-decoration-none text-start text-black col-12"
+                        data-bs-toggle = "modal"
+                        data-bs-target = "#ModalStacker">
+                        <i class="bi bi-sliders ps-1 pe-2"></i>Схема стекера
+                </buttom>
+        </li>
+        <li><hr class="p-0 my-0"></li>
         <li class="dropdown-item px-0">
                 <buttom type="buttom"
                         class="btn btn-link text-decoration-none text-start text-black col-12"
@@ -135,7 +144,7 @@ function logout() {
                 <buttom type="buttom"
                         class="btn btn-link text-decoration-none text-start text-black col-12"
                         @click="logout">
-                        <i class="bi bi-info-circle ps-1 pe-2"></i>Вихід
+                        <i class="bi bi-door-open ps-1 pe-2"></i>Вихід
                 </buttom>
         </li>  
 </ul>
