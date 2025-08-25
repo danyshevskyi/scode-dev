@@ -23,7 +23,7 @@ axios.post(apiUrl + '/scode/all',
     
   <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header sticky-top bg-white 1opacity-0">
+        <div class="modal-header sticky-top bg-white">
           <h5 class="modal-title"><i class="bi bi-book me-2"></i>Перегляд всіх скодів</h5> 
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -52,5 +52,3 @@ axios.post(apiUrl + '/scode/all',
 
 </template>
 
-<style scoped>
-</style>

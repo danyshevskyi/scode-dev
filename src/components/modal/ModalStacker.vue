@@ -24,7 +24,7 @@ import stacker_02 from '../../assets/stacker_02.jpg'
   <div class="modal-dialog">
     <div class="modal-content">
       
-      <div class="sticky-top bg-white 1shadow 1mb-3">
+      <div class="sticky-top bg-white rounded-4">
         <div class="modal-header">
           <h5 class="modal-title">Схема стекера</h5>  
             <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
