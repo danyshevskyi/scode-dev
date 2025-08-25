@@ -13,13 +13,10 @@ const baseUrl = import.meta.env.VITE_BASE_URL
 const user = ref(JSON.parse(localStorage.getItem('user')))
 const scodeSearch = ref('')
 const jsonEmptyTemplate = ref(
-        {
-                data: {
-                        status: "",
-                        scode: null,
-                        error: "Вказаний скод не знайдений!",
-                        solution: "Переглянути список скодів можна в меню \"всі скоди\"."
-                }
+        {       
+                scode: null,
+                error: "Вказаний скод не знайдений!",
+                solution: "Переглянути список скодів можна в меню \"всі скоди\"."       
         }
 )
 const resultApiScode = ref()
@@ -31,23 +28,16 @@ async function getApiScode() {
                         {
                         'scode' : scodeSearch.value
                         }
-                )
-                .catch(error => {
-                        console.log(error)
-                })
-                .then(response => {
-                        if(response.data.status == true) {
-                                resultApiScode.value = response.data
-
-                                console.log('true')
-                        } else {
-                                console.log('false')
-                                resultApiScode.value = jsonEmptyTemplate.value
-
-                                console.log(resultApiScode)
-                        }      
-                })                
-                scodeSearch.value = null
+        ).catch(error => {
+                console.log(error)
+        }).then(response => { 
+                if(response.data !== null){
+                        resultApiScode.value = response.data       
+                } else {
+                        resultApiScode.value = jsonEmptyTemplate.value
+                }      
+        })                
+        scodeSearch.value = null
 }
 
 function searchScode() {
@@ -196,5 +186,3 @@ function logout() {
 
 
 </template>
-<style scoped>
-</style>

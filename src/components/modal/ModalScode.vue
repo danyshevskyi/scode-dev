@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import stacker from '../../assets/stacker3.jpg'
+import stacker from '../../assets/stacker_02.jpg'
 
 const props = defineProps({
   resultApiScode: Object
@@ -14,14 +14,14 @@ const props = defineProps({
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" v-if="resultApiScode.data.scode !== null">Код помилки: {{ resultApiScode.data.scode }}</h5> 
+        <h5 class="modal-title" v-if="resultApiScode.scode !== null">Код помилки: {{ resultApiScode.scode }}</h5> 
         <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="mt-2"> 
         <div class="px-1">
-          <p class="text-center t18 fw-bold my-4 px-3">{{ resultApiScode.data.error }}</p>
-          <p class="1text-center t18 1px-4 mx-2 px-3" style="text-align: justify;">{{ resultApiScode.data.solution }}</p>
-          <img :src="stacker" alt="stacker" class="mb-4 me-4 text-center" v-if="resultApiScode.data.scode !== null">
+          <p class="text-center t18 fw-bold my-4 px-3">{{ resultApiScode.error }}</p>
+          <p class="1text-center t18 1px-4 mx-2 px-3" style="text-align: justify;">{{ resultApiScode.solution }}</p>
+          <img :src="stacker" alt="stacker" class="mb-4 me-4 text-center" v-if="resultApiScode.scode !== null" width="100%">
         </div>
     </div>
     </div>

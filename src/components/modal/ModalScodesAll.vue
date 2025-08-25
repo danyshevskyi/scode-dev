@@ -12,9 +12,8 @@ axios.post(apiUrl + '/scode/all',
                 console.log(error)
         })
         .then(response => {
-          console.log(response.data)
             allScodes.value = response.data  
-        })
+})
 
 </script>
 
