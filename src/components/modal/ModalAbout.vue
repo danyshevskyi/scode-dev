@@ -16,7 +16,7 @@
   <div class="container col-auto t18">
       
     <p class="mt-1 mb-0" style="text-align: justify; text-indent: 25px;">
-      Scode це додаток пошуку рішень для інженерів з обслуговування банкоматів WincorNixdorf на базі контролерів CMD-V4.  
+      Scode це додаток пошуку рішень для інженерів з обслуговування банкоматів Wincor Nixdorf на базі контролерів CMD-V4.  
     </p>
   
     <p class="1mb-0 my-2 1bb" style="text-align: justify; text-indent: 25px;">
@@ -24,10 +24,10 @@
     </p>
   
     <p class="mb-2" style="text-align: justify; text-indent: 25px;">
-      <span class="fw-medium">Дозволяє ознайомитись з списоком скодів та вивчити схему стекера. </span>
+      Дозволяє ознайомитись з списоком скодів та вивчити схему стекера.
     </p>
   
-    <p class="text-center my-2">Web-адрес:
+    <p class="text-center my-2">Доступ із будь-якого пристрою за адресою:<br>
         <a href="https://dov.pp.ua/scode" class="text-decoration-none"> https://dov.pp.ua/scode</a> 
     </p>
   
@@ -63,11 +63,11 @@
               </button>
   </div>
 
-  <a class="text-decoration-none text-black" href="https://www.linkedin.com/in/danyshevskyi/" target="_blank"> 
+  <!-- <a class="text-decoration-none text-black" href="https://www.linkedin.com/in/danyshevskyi/" target="_blank"> 
       <div class="text-center 1mt-1 mb-4" style="font-size: 13px;">Oleksii Danyshevskyi &copy; 2025    
       <i class="bi bi-linkedin"></i>
     </div>
-  </a>
+  </a> -->
   
   </div>
       
