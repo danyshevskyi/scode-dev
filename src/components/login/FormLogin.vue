@@ -57,7 +57,8 @@ function passShow(input) {
             <div class="text-center text-danger mb-2"
                  id="alertLogin"
                  :hidden="isHidden">
-                 Sorry, the login or password is incorrect!
+                 <!-- Sorry, the login or password is incorrect! -->
+                 Вибачте, логін або пароль неправильний!
             </div>
 <form>
 <div class="mb-3">
@@ -71,9 +72,8 @@ function passShow(input) {
             required>
 </div>
 
-
 <div class="mb-3 position-relative">
-   <label for="password" class="form-label mb-1">Password</label>
+   <label for="password" class="form-label mb-1">Пароль</label>
    <input
             v-model="pass"
             type="password"
@@ -89,26 +89,22 @@ function passShow(input) {
         </div>  
 </div>
 
-
 <div class="form-check mt-3">
         <input id="authRem"
                v-model="rem"
                class="form-check-input border-secondary border-opacity-50"
-               type="checkbox"
-               _name="rem">
-               <label class="form-check-label" for="authRem">Remember me</label>
+               type="checkbox">
+               <label class="form-check-label" for="authRem">Запам'ятати мене</label>
     </div>
-
-
 
     <div class="text-end mt-3 py-2">
       <a href="https://dov.pp.ua/forgot-password">
-         <span class="me-3 text-decoration-underline text-secondary">Forgot your password?</span>
+         <span class="me-3 text-decoration-underline text-secondary">Забули пароль?</span>
       </a> 
       <button type="button"
-                class="btn btn-dark px-4"
+                class="btn btn-dark px-5"
                 @click="login">
-                Log in
+                Вхід
         </button>
     </div>
 

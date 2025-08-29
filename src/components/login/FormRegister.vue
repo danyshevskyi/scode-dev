@@ -88,7 +88,7 @@ function passShow(input) {
 
 <div class="text-center text-danger">{{ errorName }}</div>
 <div class="mb-3">
-    <label for="name" class="form-label mb-1">Name</label>
+    <label for="name" class="form-label mb-1">Ім'я</label>
     <input
             v-model="name"
             type="text"
@@ -110,7 +110,7 @@ function passShow(input) {
 
 <div class="text-center text-danger">{{ errorPass }}</div>
 <div class="mb-3 position-relative">
-    <label for="password" class="form-label mb-1">Password</label>
+    <label for="password" class="form-label mb-1">Пароль</label>
     <input
             v-model="pass"
             type="password"
@@ -127,7 +127,7 @@ function passShow(input) {
 </div>
 
 <div>
-    <label for="password_confirm" class="form-label mb-1">Confirm Password</label>
+    <label for="password_confirm" class="form-label mb-1">Підтвердьте пароль</label>
     <input
             v-model="pass_confirm"
             type="password"
@@ -137,7 +137,9 @@ function passShow(input) {
 
 
 <div class="form-text mt-3">
-    <div id="passwordHelpBlock" class="form-text"> The password field must be at least 8 characters
+    <div id="passwordHelpBlock" class="form-text">
+        <!-- The password field must be at least 8 characters -->
+        Поле пароля має містити щонайменше 8 символів
     </div>
 </div>
 
@@ -147,7 +149,7 @@ function passShow(input) {
         <button type="button"
                 class="btn btn-dark px-4"
                 @click="register">
-                Register
+                Зареєструвати
         </button>
     </div>
 

@@ -27,7 +27,7 @@ const isActiveReg = ref('')
             role="tab"
             aria-controls="nav-home"
             aria-selected="true">
-            Sign in
+            Вхід
     </button>
     
     <button class="nav-link text-dark"
@@ -38,7 +38,7 @@ const isActiveReg = ref('')
             role="tab"
             aria-controls="nav-profile"
             aria-selected="false">
-            Registration
+            Реєстрація
     </button>
 
     <button type="button"

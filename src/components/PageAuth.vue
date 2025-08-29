@@ -64,7 +64,7 @@ function logout() {
 
 <div class="text-center pt-2">
         <a href="https://dov.pp.ua/scode/" class="text-decoration-none text-black">
-          <h5>SCODE for CMD-V4</h5>
+          <h5>S C O D E</h5>
         </a>
 </div>
 
@@ -73,7 +73,7 @@ function logout() {
 <button type="button"
         class="btn btn-outline-dark text-decoration-none"
         data-bs-toggle = "dropdown">
-        Menu
+        Меню
 </button>    
 
 <ul class="dropdown-menu py-0">
@@ -158,7 +158,7 @@ function logout() {
         v-model="scodeSearch">
 </form>
 
-  <div class="form-text text-center">Введите код контроллера, например: 23</div>
+  <div class="form-text text-center">Введіть код контролера, наприклад: 17</div>
 </div>
 
 <button type="button"
