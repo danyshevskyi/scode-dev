@@ -9,19 +9,19 @@ import ModalFeedback from './components/modal/ModalFeedback.vue'
 import ModalAddDesktop from './components/modal/ModalAddDesktop.vue'
 import ModalStacker from './components/modal/ModalStacker.vue'
 
-const user = JSON.parse(localStorage.getItem('user'))
+// const user = JSON.parse(localStorage.getItem('user'))
   
-   let auth = ref(false)
-      if (user !== null) {
-         auth = ref(true)
-      }
+//    let auth = ref(false)
+//       if (user !== null) {
+//          auth = ref(true)
+//       }
 
 </script>
 
 <template>
 
-<PageAuth v-if=auth></PageAuth>
-<PageNotAuth v-else></PageNotAuth>
+<PageAuth></PageAuth>
+<!-- <PageNotAuth v-else></PageNotAuth> -->
 
 
 

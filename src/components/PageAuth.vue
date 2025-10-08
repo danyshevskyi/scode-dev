@@ -68,7 +68,7 @@ function logout() {
         </a>
 </div>
 
-  <div class="col-auto 1bb">
+<div class="col-auto 1bb">
        
 <button type="button"
         class="btn btn-outline-dark text-decoration-none"
@@ -77,8 +77,8 @@ function logout() {
 </button>    
 
 <ul class="dropdown-menu py-0">
-        <li class="dropdown-item fw-semibold py-2 my-1" id="email">{{ user.email }}</li>
-        <li><hr class="p-0 my-0"></li>
+        <!-- <li class="dropdown-item fw-semibold py-2 my-1" id="email">{{ user.email }}</li>
+        <li><hr class="p-0 my-0"></li> -->
         <li class="dropdown-item px-0 1bb mt-1">
                 <buttom type="buttom"
                         class="btn btn-link text-decoration-none text-start text-black col-12"
@@ -129,14 +129,14 @@ function logout() {
                         </buttom>
                 </a>
         </li>               
-        <li><hr class="p-0 my-0"></li>
+        <!-- <li><hr class="p-0 my-0"></li>
         <li class="dropdown-item px-0 my-0 1bb">
                 <buttom type="buttom"
                         class="btn btn-link text-decoration-none text-start text-black col-12"
                         @click="logout">
                         <i class="bi bi-door-open ps-1 pe-2"></i>Вихід
                 </buttom>
-        </li>  
+        </li>   -->
 </ul>
 
 </div>
@@ -144,11 +144,15 @@ function logout() {
 
 
 
-<div class="container d-flex align-items-center justify-content-center" style="height: 75vh;">
+<div class="1bb container d-flex align-items-center justify-content-center row" style="height: 75vh;">
 
-<div class="1bb text-center col-md-7 mt-5">
+
+
+<div class="1bb text-center col-md-7 1mt-5">
    
 <div class="mb-3 1bb">
+
+<div class="text-center fs-5 1mt-5 mb-4">Пошук рішень для Wincor Nixdorf</div>
 
 <form autocomplete="off">
 <input type="text"
