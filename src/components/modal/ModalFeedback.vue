@@ -50,7 +50,7 @@ function toggle() {
     <div class="modal-content">
 
     <div class="modal-header">  
-        <h5 class="modal-title"><i class="bi bi-pencil-square pe-2"></i>Залишити відгук</h5>
+        <h5 class="modal-title"><i class="bi bi-pencil-square pe-2"></i>Написати нам</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -63,11 +63,12 @@ function toggle() {
                         maxlength="1000"
                         v-model="textFeedback">
                 </textarea>
-            </div>      
+            </div>
+            <div id="emailHelp" class="form-text">Якщо ви хочете додати своє рішення, вкажіть скод. Для запитань, напишіть email для відповіді.</div>    
     </div>
     
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" @click="sendFeedback()">Відправити</button>
+        <button type="button" class="btn btn-outline-dark" @click="sendFeedback()">Відправити</button>
     </div>
 
     </div>

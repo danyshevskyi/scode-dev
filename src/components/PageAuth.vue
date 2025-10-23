@@ -4,6 +4,7 @@ import axios from 'axios'
 import { ref } from 'vue'
 import ModalScode from '../components/modal/ModalScode.vue'
 
+
 axios.defaults.withCredentials = true
 axios.defaults.withXSRFToken = true
 
@@ -16,7 +17,8 @@ const jsonEmptyTemplate = ref(
         {       
                 scode: null,
                 error: "Вказаний скод не знайдений!",
-                solution: "Переглянути список скодів можна в меню \"всі скоди\"."       
+                solution: "Переглянути список скодів можна в меню \"всі скоди\".",
+                comment: null      
         }
 )
 const resultApiScode = ref()
@@ -41,20 +43,15 @@ async function getApiScode() {
 }
 
 function searchScode() {
-
-        getApiScode();
-
+        getApiScode()
 }
 
-function logout() {
-    axios.post(baseUrl + '/logout').then(response => {  
-    }).catch(error => {
-        console.log(error)
-    }).then(response => {
-        localStorage.removeItem('user')
-        location.replace(appUrl)
-    })
-}
+// const modal = new Modal(document.getElementById('ModalScode'))
+// modal.show()
+
+
+
+
 
 </script>
 
@@ -101,7 +98,7 @@ function logout() {
                         class="btn btn-link text-decoration-none text-start text-black col-12"
                         data-bs-toggle = "modal"
                         data-bs-target = "#ModalFeedback">
-                        <i class="bi bi-pen ps-1 pe-2"></i>Залишити відгук
+                        <i class="bi bi-pen ps-1 pe-2"></i>Написати нам
                 </buttom>
         </li>
         <li class="dropdown-item px-0 mb-2">
@@ -129,54 +126,36 @@ function logout() {
                         </buttom>
                 </a>
         </li>               
-        <!-- <li><hr class="p-0 my-0"></li>
-        <li class="dropdown-item px-0 my-0 1bb">
-                <buttom type="buttom"
-                        class="btn btn-link text-decoration-none text-start text-black col-12"
-                        @click="logout">
-                        <i class="bi bi-door-open ps-1 pe-2"></i>Вихід
-                </buttom>
-        </li>   -->
 </ul>
 
 </div>
 </div>
 
-
-
-<div class="1bb container d-flex align-items-center justify-content-center row" style="height: 75vh;">
-
-
-
-<div class="1bb text-center col-md-7 1mt-5">
-   
-<div class="mb-3 1bb">
-
-<div class="text-center fs-5 1mt-5 mb-4">Пошук рішень для Wincor Nixdorf</div>
-
-<form autocomplete="off">
-<input type="text"
-        autocomplete="off"
-        class="form-control text-center fs-4" id="inputScode"
-        placeholder=""
-        v-model="scodeSearch">
-</form>
-
-  <div class="form-text text-center">Введіть код контролера, наприклад: 17</div>
+<!-- Body -->
+<div class="1bb container d-flex align-items-center justify-content-center" style="height: 75vh;">
+        <div class="1bb text-center col-md-7 1mt-5">
+                <div class="mb-3 1bb">
+                        <form autocomplete="off" @submit.prevent="handleSubmit">
+                                <input type="text"
+                                        autocomplete="off"
+                                        class="form-control text-center fs-4" id="inputScode"
+                                        placeholder=""
+                                        v-model="scodeSearch"
+                                       >
+                        </form>
+                        <div class="form-text text-center">Введіть код контролера, наприклад: 20</div>
+                </div>
+                <button type="button"
+                        class="btn btn-dark col-5 col-md-3 1mt-4 mb-5"
+                        data-bs-toggle="modal"
+                        data-bs-target="#ModalScode"
+                        @click="searchScode"
+                        ref="q">Пошук
+                </button>  
+        </div>
 </div>
 
-<button type="button"
-        class="btn btn-dark col-5 col-md-3 1mt-4 mb-5"
-        data-bs-toggle="modal"
-        data-bs-target="#ModalScode"
-        @click="searchScode">Пошук
-</button>
-    
-</div>
-</div>
-
-
-<!-- footer -->
+<!-- Footer -->
 <div class="mx-auto fixed-bottom pb-3" style="max-width: 1000px">
   <a class="text-decoration-none text-black" href="https://www.linkedin.com/in/danyshevskyi/" target="blank"> 
   <div class="text-center mt-3" style="font-size: 13px;">Oleksii Danyshevskyi &copy; 2025 
@@ -186,7 +165,7 @@ function logout() {
 </div>
 
 
-<ModalScode :resultApiScode="resultApiScode" />
+<ModalScode :resultApiScode="resultApiScode" :isModalOpen="isModalOpen"/>
 
 
 </template>
