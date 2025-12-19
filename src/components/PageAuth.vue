@@ -13,19 +13,29 @@ const apiUrl = import.meta.env.VITE_API_URL
 const baseUrl = import.meta.env.VITE_BASE_URL
 const user = ref(JSON.parse(localStorage.getItem('user')))
 const scodeSearch = ref('')
-const jsonEmptyTemplate = ref(
-        {       
-                scode: null,
-                error: "Вказаний скод не знайдений!",
-                solution: "Переглянути список скодів можна в меню \"всі скоди\".",
-                comment: null      
-        }
-)
+// const jsonEmptyTemplate = ref(
+//         {       
+//                 scode: null,
+//                 error: "Вказаний скод не знайдений!",
+//                 solution: "Переглянути список скодів можна в меню \"всі скоди\".",
+//                 comment: null      
+//         }
+// )
 const resultApiScode = ref()
 
-resultApiScode.value = jsonEmptyTemplate.value
+const loading = ref(false)
+const error = ref(false)
+const solution = ref(false)
+
+
+// resultApiScode.value = jsonEmptyTemplate.value
 
 async function getApiScode() {
+        
+        loading.value = true
+                error.value = false
+                        solution.value = false   
+        
         axios.post(apiUrl + '/scode',
                         {
                         'scode' : scodeSearch.value
@@ -34,9 +44,13 @@ async function getApiScode() {
                 console.log(error)
         }).then(response => { 
                 if(response.data !== null){
-                        resultApiScode.value = response.data       
+                        loading.value = false
+                                solution.value = true
+                                        resultApiScode.value = response.data       
                 } else {
-                        resultApiScode.value = jsonEmptyTemplate.value
+                        // resultApiScode.value = jsonEmptyTemplate.value
+                        loading.value = false
+                                error.value = true
                 }      
         })                
         scodeSearch.value = null
@@ -165,7 +179,11 @@ function searchScode() {
 </div>
 
 
-<ModalScode :resultApiScode="resultApiScode" :isModalOpen="isModalOpen"/>
+<ModalScode :resultApiScode="resultApiScode" 
+            :loading="loading"
+            :error = "error"
+            :solution = "solution"
+/>
 
 
 </template>
