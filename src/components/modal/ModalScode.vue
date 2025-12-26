@@ -67,7 +67,7 @@ const props = defineProps({
               <p class="text-center t18 fw-bold my-3 px-3">{{ resultApiScode.error }}</p>
               <p class="t18 1px-4 mx-2 px-3" style="text-align: justify;">{{ resultApiScode.solution }}</p>
             <div v-if="resultApiScode.comment !== null">
-              <p class="text-center t18 mx-2 px-3 fw-bold my-3 fst-italic"> <i class="bi bi-pen pe-2"></i>Найкращі практики</p>
+              <p class="text-center t18 mx-2 px-3 fw-bold my-3 fst-italic"> <i class="bi bi-pen pe-2"></i>Коментарі інженерів</p>
               <p class="t18 mx-2 px-3 1my-0 1fst-italic" style="text-align: justify;">{{ resultApiScode.comment }}</p>
             </div>
             <div class="mx-2 my-4 1mt-3 1mb-2 1bb text-center container">

@@ -170,10 +170,23 @@ function searchScode() {
 </div>
 
 <!-- Footer -->
+<!-- 
 <div class="mx-auto fixed-bottom pb-3" style="max-width: 1000px">
   <a class="text-decoration-none text-black" href="https://www.linkedin.com/in/danyshevskyi/" target="blank"> 
   <div class="text-center mt-3" style="font-size: 13px;">Oleksii Danyshevskyi &copy; 2025 
   <i class="bi bi-linkedin"></i>
+</div>
+</a>
+</div>
+-->
+
+<div class="mx-auto fixed-bottom pb-3" style="max-width: 1000px">
+<a class="text-decoration-none text-black" href="https://dov.pp.ua" target="blank">
+  <!-- <div class="text-center mt-3" style="font-size: 13px;">Oleksii Danyshevskyi &copy; 2025  
+  
+</div> -->
+<div class="text-center mt-3" style="font-size: 13px;">Олексій Данишевський &copy; 2025 Вінниця 
+  
 </div>
 </a>
 </div>
