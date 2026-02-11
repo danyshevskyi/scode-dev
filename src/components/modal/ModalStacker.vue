@@ -7,12 +7,12 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 const result = ref()
 
-axios.post(apiUrl + '/scode/stacker/components',
-).catch(error => {
-  console.log(error)
-}).then(response => {
-  result.value = response.data  
-})
+// axios.post(apiUrl + '/scode/stacker/components',
+// ).catch(error => {
+//   console.log(error)
+// }).then(response => {
+//   result.value = response.data  
+// })
 
 import stacker_02 from '../../assets/stacker_02.jpg'
 

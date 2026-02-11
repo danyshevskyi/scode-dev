@@ -6,14 +6,14 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 const allScodes = ref()
 
-axios.post(apiUrl + '/scode/all',
-        )
-        .catch(error => {
-                console.log(error)
-        })
-        .then(response => {
-            allScodes.value = response.data  
-})
+// axios.post(apiUrl + '/scode/all',
+//         )
+//         .catch(error => {
+//                 console.log(error)
+//         })
+//         .then(response => {
+//             allScodes.value = response.data  
+// })
 
 </script>
 

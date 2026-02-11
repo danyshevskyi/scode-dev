@@ -1,15 +1,12 @@
 <script setup>
-import { ref } from 'vue'
 import stacker from '../../assets/stacker_02.jpg'
 import circles from '../../assets/Fidget-spinner.gif'
 import dribbble from '../../assets/dribbble_15.gif'
-
-
 const props = defineProps({
-  resultApiScode: Object,
+  apiSearch: Object,
   loading: Boolean,
   error: Boolean,
-  solution: Boolean
+  success: Boolean
 })
 
 </script>
@@ -56,19 +53,19 @@ const props = defineProps({
       </div>
   </div>
   
-  <!-- solution -->
-   <div class="solution" v-if="solution">
+  <!-- success -->
+   <div class="success" v-if="success">
           <div class="modal-header">
-            <h5 class="modal-title">Код помилки: {{ resultApiScode.scode }}</h5>
+            <h5 class="modal-title">Код помилки: {{ apiSearch.scode }}</h5>
             <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="mt-2 1bb"> 
             <div class="px-1">
-              <p class="text-center t18 fw-bold my-3 px-3">{{ resultApiScode.error }}</p>
-              <p class="t18 1px-4 mx-2 px-3" style="text-align: justify;">{{ resultApiScode.solution }}</p>
-            <div v-if="resultApiScode.comment !== null">
+              <p class="text-center t18 fw-bold my-3 px-3">{{ apiSearch.error }}</p>
+              <p class="t18 1px-4 mx-2 px-3" style="text-align: justify;">{{ apiSearch.solution }}</p>
+            <div v-if="apiSearch.comment !== null">
               <p class="text-center t18 mx-2 px-3 fw-bold my-3 fst-italic"> <i class="bi bi-pen pe-2"></i>Коментарі інженерів</p>
-              <p class="t18 mx-2 px-3 1my-0 1fst-italic" style="text-align: justify;">{{ resultApiScode.comment }}</p>
+              <p class="t18 mx-2 px-3 1my-0 1fst-italic" style="text-align: justify;">{{ apiSearch.comment }}</p>
             </div>
             <div class="mx-2 my-4 1mt-3 1mb-2 1bb text-center container">
               <button type="button"
