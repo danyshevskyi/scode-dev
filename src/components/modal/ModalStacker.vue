@@ -1,21 +1,13 @@
 <script setup>
-
-import axios from 'axios'
-import { ref } from 'vue'
-
+import img_loading from "../../assets/img_loading.gif";
+import img_stacker from "../../assets/img_stacker.jpg";
 const apiUrl = import.meta.env.VITE_API_URL
-
-const result = ref()
-
-// axios.post(apiUrl + '/scode/stacker/components',
-// ).catch(error => {
-//   console.log(error)
-// }).then(response => {
-//   result.value = response.data  
-// })
-
-import stacker_02 from '../../assets/stacker_02.jpg'
-
+const props = defineProps({
+  apiStacker: Object,
+  loading: Boolean,
+  error: Boolean,
+  success: Boolean,
+});
 </script>
 
 <template>
@@ -23,25 +15,47 @@ import stacker_02 from '../../assets/stacker_02.jpg'
 <div class="modal fade" tabindex="-1" id="ModalStacker">
   <div class="modal-dialog">
     <div class="modal-content">
-      
+      <!-- loading -->
+      <div class="loading" v-if="loading">
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title text-center col-11">Шукаю інформацію ...</h5>
+          <button
+            type="button"
+            class="btn-close col-1"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="text-center pb-3">
+          <img
+            :src="img_loading"
+            alt="stacker"
+            class="mb-2 1me-4 text-center 1sticky-top"
+          />
+        </div>
+      </div>
+      <!-- /loading -->
+       <!-- success -->
+       <div class="success" v-if="success">    
       <div class="sticky-top bg-white rounded-4">
         <div class="modal-header">
           <h5 class="modal-title">Схема стекера</h5>  
             <button type="button" class="btn-close me-1" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="container">
-          <img :src="stacker_02" alt="stacker" class="mb-2 1me-4 text-center 1sticky-top" width="100%">
+          <img :src="img_stacker" alt="img_stacker" class="mb-2 1me-4 text-center 1sticky-top" width="100%">
         </div>
       </div>
 
       <div class="container"> 
-        <div class="rounded border mb-3" v-for="(item, index) in result">
+        <div class="rounded border mb-3" v-for="(item, index) in apiStacker">
           <div class="p-2 fw-bolder">{{ item.component }}</div>
           <div class="p-2">{{ item.name }}</div>
           <div class="p-2">{{ item.location }}</div>
         </div>
       </div>
-    
+      </div>
+      <!-- success -->
     </div>
   </div>
 </div>

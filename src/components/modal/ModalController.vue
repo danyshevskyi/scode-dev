@@ -1,6 +1,6 @@
 <script setup>
-import circles from "../../assets/Fidget-spinner.gif";
-import controller from "../../assets/controller.png";
+import img_loading from '../../assets/img_loading.gif'
+import img_controller from "../../assets/img_controller.png";
 const props = defineProps({
   apiController: Object,
   loading: Boolean,
@@ -26,7 +26,7 @@ const props = defineProps({
           </div>
           <div class="text-center pb-3">
             <img
-              :src="circles"
+              :src="img_loading"
               alt="stacker"
               class="mb-2 1me-4 text-center 1sticky-top"
             />
@@ -49,8 +49,8 @@ const props = defineProps({
             </div>
             <div class="container">
               <img
-                :src="controller"
-                alt="stacker"
+                :src="img_controller"
+                alt="img_controller"
                 class="mt-3 mb-3 1me-4 text-center"
                 width="100%"
               />

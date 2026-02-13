@@ -1,8 +1,10 @@
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import ModalScode from "../components/modal/ModalScode.vue";
 import ModalController from "../components/modal/ModalController.vue";
+import ModalStacker from "../components/modal/ModalStacker.vue";
+import ModalScodesAll from "../components/modal/ModalScodesAll.vue";
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
@@ -11,8 +13,7 @@ const appUrl = import.meta.env.VITE_APP_URL;
 const apiUrl = import.meta.env.VITE_API_URL;
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
-const inputSearch = ref();
-const apiSearch = ref();
+const inputSearch = ref("");
 
 const loading = ref(false);
 const error = ref(false);
@@ -20,51 +21,43 @@ const success = ref(false);
 
 const apiController = {
   url: '/controller',
-  body: {},
-  result: ref(),
+  body: computed(() => ({})),
+  result: "",
   repeat: false
 };
 
-// const apiSearch = {
-//   url: '/search',
-//   body: {scode: inputScode.value},
-//   result: ref(),
-//   repeat: true
-// };
+const apiSearch = {
+  url: "/search",
+  body: computed(() => ({
+    scode: inputSearch.value
+  })),
+  result: "",
+  repeat: true,
+};
 
-async function getApiScode() {
-  loading.value = true;
-  error.value = false;
-  success.value = false;
+const apiStacker = {
+  url: "/stacker",
+  body: computed(() => ({})),
+  result: "",
+  repeat: false,
+};
 
-  axios
-    .post(apiUrl + "/search", {
-      scode: inputSearch.value,
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-    .then((response) => {
-      if (response.data !== null) {
-        loading.value = false
-        success.value = true
-        apiSearch.value = response.data
-      } else {
-        loading.value = false;
-        error.value = true;
-      }
-    });
-  inputSearch.value = null;
-}
+const apiScodesAll = {
+  url: "/scodes_all",
+  body: computed(() => ({})),
+  result: "",
+  repeat: false,
+};
 
-// async function scodeSearch() {
-//   apiSearch.body = {scode: inputScode.value}
-//     getApi(apiSearch)
-    
-// }
+const apiOpenPage = {
+  url: "/open_app",
+  body: computed(() => ({})),
+  result: "",
+  repeat: false,
+};
 
-async function getApi(parameters) {  
-  if (parameters.repeat == false && parameters.result.value != null) {
+async function getApi(apiRequest) {
+  if (apiRequest.repeat == false && apiRequest.result != "") {
     loading.value = false;
     success.value = true;
   } else {
@@ -72,7 +65,7 @@ async function getApi(parameters) {
     error.value = false;
     success.value = false;
         axios
-        .post(apiUrl + parameters.url, parameters.body)
+        .post(apiUrl + apiRequest.url, apiRequest.body.value)
         .catch((error) => {
                 console.log(error);
         })
@@ -80,15 +73,16 @@ async function getApi(parameters) {
                 if (response.data !== null) {
                 loading.value = false;
                 success.value = true;
-                parameters.result.value = response.data;  
-                console.log(success.value)  
+                apiRequest.result = response.data;
                 } else {
                 loading.value = false;
                 error.value = true;
                 }
-        });
+        })
       }
 }
+
+getApi(apiOpenPage);
 
 </script>
 
@@ -123,20 +117,26 @@ async function getApi(parameters) {
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#ModalScodesAll"
+            @click="getApi(apiScodesAll)"
           >
             <i class="bi bi-book ps-1 pe-2"></i>Всі скоди
           </buttom>
         </li>
+
+
         <li class="dropdown-item px-0">
           <buttom
             type="buttom"
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#ModalStacker"
+            @click="getApi(apiStacker)"
           >
             <i class="bi bi-hdd-rack ps-1 pe-2"></i>Схема стекера
           </buttom>
         </li>
+
+
         <li class="dropdown-item px-0 mb-2">
           <buttom
             type="buttom"
@@ -221,7 +221,7 @@ async function getApi(parameters) {
         class="btn btn-dark col-5 col-md-3 1mt-4 mb-5"
         data-bs-toggle="modal"
         data-bs-target="#ModalScode"
-        @click="getApiScode()"
+        @click="getApi(apiSearch); inputSearch = ''"
         ref="q"
       >
         Пошук
@@ -249,16 +249,33 @@ async function getApi(parameters) {
   </div>
 
   <ModalScode
-    :apiSearch="apiSearch"
+    :apiSearch="apiSearch.result"
     :loading="loading"
     :error="error"
     :success="success"
   />
 
   <ModalController
-    :apiController="apiController.result.value"
+    :apiController="apiController.result"
     :loading="loading"
     :error="error"
     :success="success"
   />
+
+ <ModalStacker
+ :apiStacker="apiStacker.result"
+    :loading="loading"
+    :error="error"
+    :success="success"
+  />
+
+<ModalScodesAll
+    :apiScodesAll="apiScodesAll.result"
+    :loading="loading"
+    :error="error"
+    :success="success"
+  />
+
+  
+
 </template>
