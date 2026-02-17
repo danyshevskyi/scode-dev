@@ -16,12 +16,12 @@
   <div class="container col-auto t18">
       
     <p class="mt-1 mb-0" style="text-align: justify; text-indent: 25px;">
-      Scode це додаток пошуку рішень для інженерів з обслуговування банкоматів Wincor Nixdorf на базі контролерів CMD-V4.  
+      Scode - це додаток пошуку рішень для інженерів з обслуговування банкоматів Wincor Nixdorf на базі контролерів CMD-V4.  
     </p>
 
-    <p class="1mb-0 my-2 1bb" style="text-align: justify; text-indent: 25px;">
+    <!-- <p class="1mb-0 my-2 1bb" style="text-align: justify; text-indent: 25px;">
       Коментарі від інженерів є неофіційними рекомендаціями.
-    </p>
+    </p> -->
   
     <!-- <p class="1mb-0 my-2 1bb" style="text-align: justify; text-indent: 25px;">
       По коду помилки можливо знайти опис несправностей та рішення для них.
@@ -35,18 +35,29 @@
         <a href="https://dov.pp.ua/scode" class="text-decoration-none"> https://dov.pp.ua/scode</a> 
     </p>
   
-    <p class="mb-0">
-      <span class="fw-medium"><i class="bi bi-check2-circle fs-5 ps-4"></i> Technology stack:</span>
+    <p class="mb-0 text-center">
+      <span class="fw-semibold">Розроблено на laravel 12.x + Vue.js</span>
+    </p>
+    
+    <p class="mb-0 text-center t18 mt-3">
+      <a href="https://www.privat24.ua/send/i6l12" target="_blank">
+              <buttom
+                type="buttom"
+                class="btn btn-link text-decoration-none 1text-start text-black col-12 t18"
+              >
+                <i class="bi bi-cup-hot ps-1 pe-2"></i>Підтримати проект
+              </buttom>
+      </a>
     </p>
         <!-- <ul class="mb-1 1bb">
             <li>HTML 5.0, CSS 3.0, JavaScript 3.0</li>
             <li>Vue.js + Vite, Bootstrap v.5.3</li>
             <li>laravel 12.x, PHP 8.2, MySQL, Git</li>
         </ul> -->
-        <ul class="mb-1 1bb">
+        <!-- <ul class="mb-1 1bb">
             <li>Vue.js, Bootstrap v.5.3</li>
             <li>laravel 12.x, MySQL</li>
-        </ul>
+        </ul> -->
     <p class="text-center mt-3"> 
       <a href="https://github.com/danyshevskyi/scode-dev" class="text-decoration-underline text-dark" target="_blank">
           <i class="bi bi-github pe-2 1text-black"></i>Scode on GitHub

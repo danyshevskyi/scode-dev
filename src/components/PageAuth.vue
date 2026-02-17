@@ -5,6 +5,7 @@ import ModalScode from "../components/modal/ModalScode.vue";
 import ModalController from "../components/modal/ModalController.vue";
 import ModalStacker from "../components/modal/ModalStacker.vue";
 import ModalScodesAll from "../components/modal/ModalScodesAll.vue";
+import coffee from "../../src/assets/coffee2.png";
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
@@ -140,12 +141,15 @@ getApi(apiOpenPage);
         <li class="dropdown-item px-0 mb-2">
           <buttom
             type="buttom"
-            class="btn btn-link text-decoration-none text-start text-black col-12"
+            class="btn btn-link text-decoration-none text-start text-black col-12 position-relative"
             data-bs-toggle="modal"
             data-bs-target="#ModalController"
             @click="getApi(apiController)"
           >
             <i class="bi bi-cpu pe-2"></i>Схема контроллера
+            <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
+    Нове
+  </span>
           </buttom>
         </li>
         <li><hr class="p-0 my-0" /></li>
@@ -159,7 +163,7 @@ getApi(apiOpenPage);
             <i class="bi bi-pen ps-1 pe-2"></i>Зворотний зв'язок
           </buttom>
         </li>
-        <li class="dropdown-item px-0 mb-2">
+        <li class="dropdown-item px-0">
           <buttom
             type="buttom"
             class="btn btn-link text-decoration-none text-start text-black col-12"
@@ -180,7 +184,7 @@ getApi(apiOpenPage);
             <i class="bi bi-info-circle ps-1 pe-2"></i>Про додаток
           </buttom>
         </li>
-        <li><hr class="p-0 my-0" /></li>
+        <!-- <li><hr class="p-0 my-0" /></li>
         <li class="dropdown-item px-0 mb-0">
           <a href="https://dov.pp.ua/miles" target="_blank">
             <buttom
@@ -188,6 +192,17 @@ getApi(apiOpenPage);
               class="btn btn-link text-decoration-none text-start text-black col-12"
             >
               <i class="bi bi-car-front ps-1 pe-2"></i>Пробіг авто
+            </buttom>
+          </a>
+        </li> -->
+        <li><hr class="p-0 my-0" /></li>
+        <li class="dropdown-item px-0 my-1">
+          <a href="https://www.privat24.ua/send/i6l12" target="_blank">
+            <buttom
+              type="buttom"
+              class="btn btn-link text-decoration-none text-start text-black col-12"
+            >
+              <i class="bi bi-cup-hot ps-1 pe-2"></i>Підтримати проект
             </buttom>
           </a>
         </li>
@@ -231,21 +246,22 @@ getApi(apiOpenPage);
 
   <!-- Footer -->
   <div class="mx-auto fixed-bottom pb-3" style="max-width: 1000px">
-    <!-- <a
+    <a
       class="text-decoration-none text-black"
       href="https://www.privat24.ua/send/i6l12"
       target="blank"
-    > -->
-      <!-- <div class="text-center py-1"> -->
-        <!-- <img :src="coffee" alt="coffee" class="pb-2" width="5%">&nbspСказати дякую -->
-        <!-- &nbsp Підтримати 💙💛
-      </div> -->
-    <!-- </a> -->
-    <!-- <a class="text-decoration-none text-black" href="https://dov.pp.ua" target="blank"> -->
+    >
+      <div class="text-center py-1">
+        <!-- <img :src="coffee" alt="coffee" class="pb-2"> -->
+        <!-- <i class="bi bi-cup-hot"></i>&nbspПідтримати проект -->
+        <!-- &nbsp Підтримати 💙💛 -->
+      </div>
+    </a>
+    <a class="text-decoration-none text-black" href="https://dov.pp.ua" target="blank">
     <div class="text-center mt-2" style="font-size: 13px">
       Олексій Данишевський &copy; 2026
     </div>
-    <!-- </a> -->
+    </a>
   </div>
 
   <ModalScode
