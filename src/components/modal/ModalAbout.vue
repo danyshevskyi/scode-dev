@@ -78,7 +78,7 @@
               style="margin-bottom: 13px;"
               data-bs-toggle="modal"
               data-bs-target="#ModalFeedback">
-              <i class="bi bi-pen ps-1 pe-2"></i>Залишити відгук
+              <i class="bi bi-pen ps-1 pe-2"></i>Зворотний зв'язок
               </button>
   </div>
 

@@ -5,7 +5,6 @@ import ModalScode from "../components/modal/ModalScode.vue";
 import ModalController from "../components/modal/ModalController.vue";
 import ModalStacker from "../components/modal/ModalStacker.vue";
 import ModalScodesAll from "../components/modal/ModalScodesAll.vue";
-import coffee from "../../src/assets/coffee2.png";
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
@@ -57,6 +56,28 @@ const apiOpenPage = {
   repeat: false,
 };
 
+const apiAddDesktop = {
+  url: "/add_desktop",
+  body: computed(() => ({})),
+  result: "",
+  repeat: false,
+};
+
+const apiAbout = {
+  url: "/about",
+  body: computed(() => ({})),
+  result: "",
+  repeat: false,
+};
+
+const apiDonats = {
+  url: "/donats",
+  body: computed(() => ({})),
+  result: "",
+  repeat: false,
+};
+
+
 async function getApi(apiRequest) {
   if (apiRequest.repeat == false && apiRequest.result != "") {
     loading.value = false;
@@ -89,7 +110,7 @@ getApi(apiOpenPage);
 
 <template>
   <div
-    class="container 1header d-flex justify-content-between px-4 1bb align-items-center mt-3"
+    class="container d-flex justify-content-between px-4 align-items-center mt-3"
   >
     <div class="text-center pt-2">
       <a
@@ -100,7 +121,7 @@ getApi(apiOpenPage);
       </a>
     </div>
 
-    <div class="col-auto 1bb">
+    <div class="col-auto">
       <button
         type="button"
         class="btn btn-outline-dark text-decoration-none"
@@ -147,28 +168,31 @@ getApi(apiOpenPage);
             @click="getApi(apiController)"
           >
             <i class="bi bi-cpu pe-2"></i>Схема контроллера
-            <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
+            <span class="position-absolute top-0 start-75 ms-3 translate-middle badge rounded-pill bg-danger">
     Нове
   </span>
           </buttom>
         </li>
         <li><hr class="p-0 my-0" /></li>
-        <li class="dropdown-item px-0">
+                <!-- <li><hr class="p-0 my-0" /></li> -->
+        <!-- <li class="dropdown-item px-0">
           <buttom
             type="buttom"
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#ModalFeedback"
+            @click="getApi(apiFeedback)"
           >
             <i class="bi bi-pen ps-1 pe-2"></i>Зворотний зв'язок
           </buttom>
-        </li>
+        </li> -->
         <li class="dropdown-item px-0">
           <buttom
             type="buttom"
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#ModalAddDesktop"
+            @click="getApi(apiAddDesktop)"
           >
             <i class="bi bi-box-arrow-in-down-left ps-1 pe-2"></i>Додати на
             робочий стіл
@@ -180,6 +204,7 @@ getApi(apiOpenPage);
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#mod_about"
+            @click="getApi(apiAbout)"
           >
             <i class="bi bi-info-circle ps-1 pe-2"></i>Про додаток
           </buttom>
@@ -201,6 +226,7 @@ getApi(apiOpenPage);
             <buttom
               type="buttom"
               class="btn btn-link text-decoration-none text-start text-black col-12"
+              @click="getApi(apiDonats)"
             >
               <i class="bi bi-cup-hot ps-1 pe-2"></i>Підтримати проект
             </buttom>
@@ -246,20 +272,20 @@ getApi(apiOpenPage);
 
   <!-- Footer -->
   <div class="mx-auto fixed-bottom pb-3" style="max-width: 1000px">
-    <a
+    <!-- <a
       class="text-decoration-none text-black"
       href="https://www.privat24.ua/send/i6l12"
       target="blank"
-    >
-      <div class="text-center py-1">
+    > -->
+      <!-- <div class="text-center py-1"> -->
         <!-- <img :src="coffee" alt="coffee" class="pb-2"> -->
         <!-- <i class="bi bi-cup-hot"></i>&nbspПідтримати проект -->
         <!-- &nbsp Підтримати 💙💛 -->
-      </div>
-    </a>
+      <!-- </div> -->
+    <!-- </a> -->
     <a class="text-decoration-none text-black" href="https://dov.pp.ua" target="blank">
     <div class="text-center mt-2" style="font-size: 13px">
-      Олексій Данишевський &copy; 2026
+      Олексій Данишевський &copy; 2026<br>м. Вінниця
     </div>
     </a>
   </div>
