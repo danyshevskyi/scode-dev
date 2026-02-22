@@ -36,7 +36,7 @@
     </p>
   
     <p class="mb-0 text-center">
-      <span class="fw-semibold">Розроблено на laravel 12.x + Vue.js</span>
+      <span class="fw-semibold">Стек розробки: laravel 12.x + Vue.js</span>
     </p>
     
     <p class="mb-0 text-center t18 mt-3">

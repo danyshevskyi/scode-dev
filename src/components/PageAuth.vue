@@ -77,6 +77,12 @@ const apiDonats = {
   repeat: false,
 };
 
+const apiDan = {
+  url: "/dan",
+  body: computed(() => ({})),
+  result: "",
+  repeat: false,
+};
 
 async function getApi(apiRequest) {
   if (apiRequest.repeat == false && apiRequest.result != "") {
@@ -283,7 +289,7 @@ getApi(apiOpenPage);
         <!-- &nbsp Підтримати 💙💛 -->
       <!-- </div> -->
     <!-- </a> -->
-    <a class="text-decoration-none text-black" href="https://dov.pp.ua" target="blank">
+    <a class="text-decoration-none text-black" href="https://dov.pp.ua" target="blank" @click="getApi(apiDan)">
     <div class="text-center mt-2" style="font-size: 13px">
       Олексій Данишевський &copy; 2026<br>м. Вінниця
     </div>
@@ -317,7 +323,5 @@ getApi(apiOpenPage);
     :error="error"
     :success="success"
   />
-
-  
 
 </template>
