@@ -1,13 +1,22 @@
 <script setup>
+import axios from "axios";
 import img_loading from "../../assets/img_loading.gif";
 import img_error from "../../assets/img_error.gif";
 import img_stacker from "../../assets/img_stacker.jpg";
 const props = defineProps({
-  apiSearch: Object,
+  apiScodeSearch: Object,
   loading: Boolean,
   error: Boolean,
   success: Boolean,
 });
+
+async function sendAnalytics(request) {
+  axios
+        .post(import.meta.env.VITE_URL_API_ANALYTICS + '/' + request)
+        .catch((error) => {
+                console.log(error);
+        })
+}
 </script>
 
 <template>
@@ -60,9 +69,10 @@ const props = defineProps({
               class="btn btn-outline-dark col-12 fs-5 rounded-5 py-2"
               data-bs-toggle="modal"
               data-bs-target="#ModalFeedback"
+              @click="sendAnalytics('feedback')"
             >
-              <i class="bi bi-rocket-takeoff pe-1"></i>
-              Додати своє рішення
+              <!-- <i class="bi bi-rocket-takeoff pe-1"></i> -->
+              Додати коментар
             </button>
           </div>
         </div>
@@ -70,7 +80,7 @@ const props = defineProps({
         <!-- success -->
         <div class="success" v-if="success">
           <div class="modal-header">
-            <h5 class="modal-title">Код помилки: {{ apiSearch.scode }}</h5>
+            <h5 class="modal-title">Код помилки: {{ apiScodeSearch.scode }}</h5>
             <button
               type="button"
               class="btn-close me-1"
@@ -81,12 +91,12 @@ const props = defineProps({
           <div class="mt-2 1bb">
             <div class="px-1">
               <p class="text-center t18 fw-bold my-3 px-3">
-                {{ apiSearch.error }}
+                {{ apiScodeSearch.error }}
               </p>
               <p class="t18 1px-4 mx-2 px-3" style="text-align: justify">
-                {{ apiSearch.solution }}
+                {{ apiScodeSearch.solution }}
               </p>
-              <div v-if="apiSearch.comment !== null">
+              <div v-if="apiScodeSearch.comment !== null">
                 <p class="text-center t18 mx-2 px-3 fw-bold my-3 fst-italic">
                   <i class="bi bi-pen pe-2"></i>Коментарі інженерів
                 </p>
@@ -94,7 +104,7 @@ const props = defineProps({
                   class="t18 mx-2 px-3 1my-0 1fst-italic"
                   style="text-align: justify"
                 >
-                  {{ apiSearch.comment }}
+                  {{ apiScodeSearch.comment }}
                 </p>
               </div>
               <div class="mx-2 my-4 1mt-3 1mb-2 1bb text-center container">
@@ -103,9 +113,10 @@ const props = defineProps({
                   class="btn btn-outline-dark col-12 fs-5 rounded-5 py-2"
                   data-bs-toggle="modal"
                   data-bs-target="#ModalFeedback"
+                  @click="sendAnalytics('feedback')"
                 >
-                  <i class="bi bi-rocket-takeoff pe-1"></i>
-                  Додати своє рішення
+                  <!-- <i class="bi bi-plus-lg pe-1"></i> -->
+                  Додати коментар
                 </button>
               </div>
               <img

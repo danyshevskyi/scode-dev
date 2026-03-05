@@ -64,7 +64,7 @@ function toggle() {
                         v-model="textFeedback">
                 </textarea>
             </div>
-            <div id="emailHelp" class="form-text">Якщо ви хочете додати своє рішення, вкажіть скод. Для запитань, напишіть email для відповіді.</div>    
+            <div id="emailHelp" class="form-text">Якщо ви хочете додати коментар, вкажіть до якого скоду. Для запитань, напишіть email для відповіді.</div>    
     </div>
     
     <div class="modal-footer">
