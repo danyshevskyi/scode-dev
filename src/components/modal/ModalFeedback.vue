@@ -3,12 +3,11 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
-const baseUrl = import.meta.env.VITE_BASE_URL
-const apiUrl = import.meta.env.VITE_API_URL
+const urlApi = import.meta.env.VITE_URL_API
 
 const project = ref(5) // Set project id for DOV Feedback
 const textFeedback = ref('')
-const user = ref(JSON.parse(localStorage.getItem('user')))
+// const user = ref(JSON.parse(localStorage.getItem('user')))
 
 const vTextarea = ref(true)
 const vOk = ref(false)
@@ -18,17 +17,12 @@ function sendFeedback() {
     vTextarea.value = !vTextarea.value
         vOk.value = !vOk.value
     
-    axios.post(apiUrl + '/feedback',
+    axios.post(urlApi + '/feedback',
          {
             project_id: project.value,
-            user_id: user.value.id,
+            // user_id: user.value.id,
             feedback_text: textFeedback.value
-         }
-      ).catch(error => {
-          
-      }).then(response => {
-
-    })
+         })
 }
 
 function toggle() {
