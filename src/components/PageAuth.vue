@@ -53,9 +53,9 @@ const apiControllerFunctions = {
   repeat: false,
 };
 
-async function sendAnalytics(request) {
+async function sendAnalytics(urlRequest, bodyRequest) {
   axios
-        .post(urlAnalytics + '/' + request)
+        .post(urlAnalytics + '/' + urlRequest, bodyRequest)
         .catch((error) => {
                 console.log(error);
         })
@@ -248,7 +248,7 @@ sendAnalytics('open_app');
         class="btn btn-dark col-5 col-md-3 1mt-4 mb-5"
         data-bs-toggle="modal"
         data-bs-target="#ModalScode"
-        @click="getApi(apiScodeSearch); inputSearch = ''; sendAnalytics('scode_search')"
+        @click="getApi(apiScodeSearch); sendAnalytics('scode_search', apiScodeSearch.body.value); inputSearch = '';"
         ref="q"
       >
         Пошук

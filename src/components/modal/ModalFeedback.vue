@@ -3,7 +3,8 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
-const urlApi = import.meta.env.VITE_URL_API
+const urlApi = import.meta.env.VITE_URL_API;
+const urlAnalytics = import.meta.env.VITE_URL_API_ANALYTICS;
 
 const project = ref(5) // Set project id for DOV Feedback
 const textFeedback = ref('')
@@ -62,7 +63,7 @@ function toggle() {
     </div>
     
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" @click="sendFeedback()">Відправити</button>
+        <button type="button" class="btn btn-outline-dark" @click="sendFeedback(); textFeedback = ''">Відправити</button>
     </div>
 
     </div>
