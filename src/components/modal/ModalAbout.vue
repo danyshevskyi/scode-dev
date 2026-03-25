@@ -47,9 +47,6 @@ async function sendAnalytics(request) {
               target="blank"
               @click="getApi(apiFooter)"
             >
-              <div class="text-center my-2 t18">
-                Powered by laravel 12.x + Vue.js
-              </div>
             </a>
           </div>
 
@@ -74,6 +71,9 @@ async function sendAnalytics(request) {
               target="blank"
               @click="getApi(apiFooter)"
             >
+            <div class="text-center my-2">
+                Powered by laravel 12.x + Vue.js
+              </div>
               <div class="text-center my-2">
                 <i class="bi bi-github pe-2"></i>Scode on GitHub
               </div>

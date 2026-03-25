@@ -12,10 +12,10 @@ const props = defineProps({
 
 async function sendAnalytics(request) {
   axios
-        .post(import.meta.env.VITE_URL_API_ANALYTICS + '/' + request)
-        .catch((error) => {
-                console.log(error);
-        })
+    .post(import.meta.env.VITE_URL_API_ANALYTICS + "/" + request)
+    .catch((error) => {
+      console.log(error);
+    });
 }
 </script>
 
@@ -42,7 +42,6 @@ async function sendAnalytics(request) {
             />
           </div>
         </div>
-
         <!-- error -->
         <div class="error" v-if="error">
           <div class="modal-header border-bottom-0 error">
@@ -71,15 +70,13 @@ async function sendAnalytics(request) {
               data-bs-target="#ModalFeedback"
               @click="sendAnalytics('feedback')"
             >
-              <!-- <i class="bi bi-rocket-takeoff pe-1"></i> -->
               Додати коментар
             </button>
           </div>
         </div>
-
         <!-- success -->
         <div class="success" v-if="success">
-          <div class="modal-header">
+          <div class="modal-header sticky-top bg-white">
             <h5 class="modal-title">Код помилки: {{ apiScodeSearch.scode }}</h5>
             <button
               type="button"
@@ -88,26 +85,27 @@ async function sendAnalytics(request) {
               aria-label="Close"
             ></button>
           </div>
-          <div class="mt-2 1bb">
-            <div class="px-1">
-              <p class="text-center t18 fw-bold my-3 px-3">
+          <div class="mt-2 container">
+            <div class="1px-1 1bb">
+              <p class="text-center t18 fw-bold my-3 1px-3">
                 {{ apiScodeSearch.error }}
               </p>
-              <p class="t18 1px-4 mx-2 px-3" style="text-align: justify">
-                {{ apiScodeSearch.solution }}
-              </p>
+              <p
+                class="t18 1px-4 mx-2 1px-3"
+                style="text-align: justify"
+                v-html="apiScodeSearch.solution"
+              ></p>
               <div v-if="apiScodeSearch.comment !== null">
-                <p class="text-center t18 mx-2 px-3 fw-bold my-3 fst-italic">
-                  <i class="bi bi-pen pe-2"></i>Коментарі інженерів
+                <p class="text-center t18 mx-2 fw-bold my-3">
+                  Коментарі інженерів
                 </p>
                 <p
-                  class="t18 mx-2 px-3 1my-0 1fst-italic"
+                  class="t18 mx-2"
                   style="text-align: justify"
-                >
-                  {{ apiScodeSearch.comment }}
-                </p>
+                  v-html="apiScodeSearch.comment"
+                ></p>
               </div>
-              <div class="mx-2 my-4 1mt-3 1mb-2 1bb text-center container">
+              <div class="mx-2 my-4 text-center">
                 <button
                   type="button"
                   class="btn btn-outline-dark col-12 fs-5 rounded-5 py-2"
@@ -115,7 +113,7 @@ async function sendAnalytics(request) {
                   data-bs-target="#ModalFeedback"
                   @click="sendAnalytics('feedback')"
                 >
-                  <!-- <i class="bi bi-plus-lg pe-1"></i> -->
+                  <i class="bi bi-pen pe-2"></i>
                   Додати коментар
                 </button>
               </div>

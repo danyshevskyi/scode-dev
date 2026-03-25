@@ -1,5 +1,5 @@
 <script setup>
-import img_loading from '../../assets/img_loading.gif'
+import img_loading from "../../assets/img_loading.gif";
 
 const props = defineProps({
   apiScodeAll: Object,

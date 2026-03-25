@@ -17,16 +17,16 @@ const error = ref(false);
 const success = ref(false);
 
 const apiController = {
-  url: '/controller',
+  url: "/controller",
   body: computed(() => ({})),
   result: "",
-  repeat: false
+  repeat: false,
 };
 
 const apiScodeSearch = {
   url: "/scode_search",
   body: computed(() => ({
-    scode: inputSearch.value
+    scode: inputSearch.value,
   })),
   result: "",
   repeat: true,
@@ -54,11 +54,9 @@ const apiControllerFunctions = {
 };
 
 async function sendAnalytics(urlRequest, bodyRequest) {
-  axios
-        .post(urlAnalytics + '/' + urlRequest, bodyRequest)
-        .catch((error) => {
-                console.log(error);
-        })
+  axios.post(urlAnalytics + "/" + urlRequest, bodyRequest).catch((error) => {
+    console.log(error);
+  });
 }
 
 async function getApi(apiRequest) {
@@ -69,26 +67,25 @@ async function getApi(apiRequest) {
     loading.value = true;
     error.value = false;
     success.value = false;
-        axios
-        .post(urlApi + apiRequest.url, apiRequest.body.value)
-        .catch((error) => {
-                console.log(error);
-        })
-        .then((response) => {
-                if (response.data !== null) {
-                loading.value = false;
-                success.value = true;
-                apiRequest.result = response.data;
-                } else {
-                loading.value = false;
-                error.value = true;
-                }
-        })
-      }
+    axios
+      .post(urlApi + apiRequest.url, apiRequest.body.value)
+      .catch((error) => {
+        console.log(error);
+      })
+      .then((response) => {
+        if (response.data !== null) {
+          loading.value = false;
+          success.value = true;
+          apiRequest.result = response.data;
+        } else {
+          loading.value = false;
+          error.value = true;
+        }
+      });
+  }
 }
 
-sendAnalytics('open_app');
-
+sendAnalytics("open_app");
 </script>
 
 <template>
@@ -129,7 +126,6 @@ sendAnalytics('open_app');
           </buttom>
         </li>
 
-
         <li class="dropdown-item px-0">
           <buttom
             type="buttom"
@@ -142,7 +138,6 @@ sendAnalytics('open_app');
           </buttom>
         </li>
 
-
         <li class="dropdown-item px-0">
           <buttom
             type="buttom"
@@ -152,9 +147,11 @@ sendAnalytics('open_app');
             @click="getApi(apiController), sendAnalytics('controller_scheme')"
           >
             <i class="bi bi-cpu pe-2"></i>Схема контроллера
-            <span class="position-absolute top-0 start-75 ms-3 translate-middle badge rounded-pill bg-danger">
-    Нове
-  </span>
+            <span
+              class="position-absolute top-0 start-75 ms-3 translate-middle badge rounded-pill bg-danger"
+            >
+              Нове
+            </span>
           </buttom>
         </li>
 
@@ -164,10 +161,12 @@ sendAnalytics('open_app');
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#ModalControllerFunctions"
-            @click="getApi(apiControllerFunctions), sendAnalytics('controller_functions')"
+            @click="
+              getApi(apiControllerFunctions),
+                sendAnalytics('controller_functions')
+            "
           >
-            <i class="bi bi-activity 1ps-1 pe-2"></i>Функціональні тести<br>контролера
-   
+            <i class="bi bi-activity 1ps-1 pe-2"></i>Функціональні тести<br />контролера
           </buttom>
         </li>
 
@@ -248,7 +247,11 @@ sendAnalytics('open_app');
         class="btn btn-dark col-5 col-md-3 1mt-4 mb-5"
         data-bs-toggle="modal"
         data-bs-target="#ModalScode"
-        @click="getApi(apiScodeSearch); sendAnalytics('scode_search', apiScodeSearch.body.value); inputSearch = '';"
+        @click="
+          getApi(apiScodeSearch);
+          sendAnalytics('scode_search', apiScodeSearch.body.value);
+          inputSearch = '';
+        "
         ref="q"
       >
         Пошук
@@ -263,16 +266,21 @@ sendAnalytics('open_app');
       href="https://www.privat24.ua/send/i6l12"
       target="blank"
     > -->
-      <!-- <div class="text-center py-1"> -->
-        <!-- <img :src="coffee" alt="coffee" class="pb-2"> -->
-        <!-- <i class="bi bi-cup-hot"></i>&nbspПідтримати проект -->
-        <!-- &nbsp Підтримати 💙💛 -->
-      <!-- </div> -->
+    <!-- <div class="text-center py-1"> -->
+    <!-- <img :src="coffee" alt="coffee" class="pb-2"> -->
+    <!-- <i class="bi bi-cup-hot"></i>&nbspПідтримати проект -->
+    <!-- &nbsp Підтримати 💙💛 -->
+    <!-- </div> -->
     <!-- </a> -->
-    <a class="text-decoration-none text-black" href="https://dov.pp.ua" target="blank" @click="sendAnalytics('footer')">
-    <div class="text-center my-2" style="font-size: 13px">
-      Олексій Данишевський &copy; 2026
-    </div>
+    <a
+      class="text-decoration-none text-black"
+      href="https://dov.pp.ua"
+      target="blank"
+      @click="sendAnalytics('footer')"
+    >
+      <div class="text-center my-2" style="font-size: 13px">
+        Олексій Данишевський &copy; 2026
+      </div>
     </a>
   </div>
 
@@ -290,14 +298,14 @@ sendAnalytics('open_app');
     :success="success"
   />
 
- <ModalStacker
- :apiStacker="apiStacker.result"
+  <ModalStacker
+    :apiStacker="apiStacker.result"
     :loading="loading"
     :error="error"
     :success="success"
   />
 
-<ModalScodesAll
+  <ModalScodesAll
     :apiScodeAll="apiScodeAll.result"
     :loading="loading"
     :error="error"
@@ -310,5 +318,4 @@ sendAnalytics('open_app');
     :error="error"
     :success="success"
   />
-
 </template>

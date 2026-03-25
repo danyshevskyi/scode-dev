@@ -11,7 +11,6 @@ const props = defineProps({
 </script>
 
 <template>
-
 <div class="modal fade" tabindex="-1" id="ModalStacker">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -59,5 +58,4 @@ const props = defineProps({
     </div>
   </div>
 </div>
-
 </template>

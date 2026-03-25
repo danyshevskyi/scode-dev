@@ -1,88 +1,98 @@
 <script setup>
-
-import { ref } from 'vue'
-import axios from 'axios'
+import { ref } from "vue";
+import axios from "axios";
 
 const urlApi = import.meta.env.VITE_URL_API;
 const urlAnalytics = import.meta.env.VITE_URL_API_ANALYTICS;
 
-const project = ref(5) // Set project id for DOV Feedback
-const textFeedback = ref('')
+const project = ref(5); // Set project id for DOV Feedback
+const textFeedback = ref("");
 // const user = ref(JSON.parse(localStorage.getItem('user')))
 
-const vTextarea = ref(true)
-const vOk = ref(false)
+const vTextarea = ref(true);
+const vOk = ref(false);
 
 function sendFeedback() {
+  vTextarea.value = !vTextarea.value;
+  vOk.value = !vOk.value;
 
-    vTextarea.value = !vTextarea.value
-        vOk.value = !vOk.value
-    
-    axios.post(urlApi + '/feedback',
-         {
-            project_id: project.value,
-            // user_id: user.value.id,
-            feedback_text: textFeedback.value
-         })
+  axios.post(urlApi + "/feedback", {
+    project_id: project.value,
+    // user_id: user.value.id,
+    feedback_text: textFeedback.value,
+  });
 }
 
 function toggle() {
-    setTimeout(
-                function(){
-                    vTextarea.value = !vTextarea.value
-                    vOk.value = !vOk.value 
-                }, 200
-    )
+  setTimeout(function () {
+    vTextarea.value = !vTextarea.value;
+    vOk.value = !vOk.value;
+  }, 200);
 }
-
 </script>
 
 <template>
-
-<div class="modal fade" tabindex="-1" id="ModalFeedback">
-    
-<div class="modal-dialog" v-if="vTextarea">
-    <div class="modal-content">
-
-    <div class="modal-header">  
-        <h5 class="modal-title"><i class="bi bi-pencil-square pe-2"></i>Зворотний зв'язок</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-
-    <div class="modal-body">
-            <div>
-                <textarea class="form-control"
-                        id="message"
-                        rows="5"
-                        placeholder=""
-                        maxlength="1000"
-                        v-model="textFeedback">
-                </textarea>
-            </div>
-            <div id="emailHelp" class="form-text">Якщо ви хочете додати коментар, вкажіть до якого скоду. Для запитань, напишіть email для відповіді.</div>    
-    </div>
-    
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" @click="sendFeedback(); textFeedback = ''">Відправити</button>
-    </div>
-
-    </div>
-
-</div> 
-
-<div class="alert alert-success" v-if="vOk">
-        <div class="modal-header">  
-            <h5 class="modal-title text-center col-11">Дякуємо! Відправлено успішно!</h5>
-                <button type="button"
-                        class="btn-close col-1"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                        @click="toggle()">
-                </button>
-             
+  <div class="modal fade" tabindex="-1" id="ModalFeedback">
+    <div class="modal-dialog" v-if="vTextarea">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-pencil-square pe-2"></i>Зворотний зв'язок
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
-</div>
 
-</div>
+        <div class="modal-body">
+          <div>
+            <textarea
+              class="form-control"
+              id="message"
+              rows="5"
+              placeholder=""
+              maxlength="1000"
+              v-model="textFeedback"
+            >
+            </textarea>
+          </div>
+          <div id="emailHelp" class="form-text">
+            Якщо ви хочете додати коментар, вкажіть до якого скоду. Для
+            запитань, напишіть email для відповіді.
+          </div>
+        </div>
 
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            @click="
+              sendFeedback();
+              textFeedback = '';
+            "
+          >
+            Відправити
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-success" v-if="vOk">
+      <div class="modal-header">
+        <h5 class="modal-title text-center col-11">
+          Дякуємо! Відправлено успішно!
+        </h5>
+        <button
+          type="button"
+          class="btn-close col-1"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          @click="toggle()"
+        ></button>
+      </div>
+    </div>
+  </div>
 </template>
