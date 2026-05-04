@@ -279,7 +279,7 @@ sendAnalytics("open_app");
       @click="sendAnalytics('footer')"
     >
       <div class="text-center my-2" style="font-size: 13px">
-        Олексій Данишевський &copy; 2026
+        Олексій Данишевський &copy; 2026 <br> м. Вінниця
       </div>
     </a>
   </div>
