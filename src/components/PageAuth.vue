@@ -54,7 +54,7 @@ const apiControllerFunctions = {
 };
 
 async function sendAnalytics(urlRequest, bodyRequest) {
-  axios.post(urlAnalytics + "/" + urlRequest, bodyRequest).catch((error) => {
+  axios.post(urlAnalytics + "/save/" + urlRequest, bodyRequest).catch((error) => {
     console.log(error);
   });
 }
@@ -94,7 +94,7 @@ sendAnalytics("open_app");
   >
     <div class="text-center pt-2">
       <a
-        href="https://dov.pp.ua/scode/"
+        href="https://scode.pp.ua"
         class="text-decoration-none text-black"
       >
         <h5>S C O D E</h5>
@@ -147,11 +147,11 @@ sendAnalytics("open_app");
             @click="getApi(apiController), sendAnalytics('controller_scheme')"
           >
             <i class="bi bi-cpu pe-2"></i>Схема контроллера
-            <span
+            <!-- <span
               class="position-absolute top-0 start-75 ms-3 translate-middle badge rounded-pill bg-danger"
             >
               Нове
-            </span>
+            </span> -->
           </buttom>
         </li>
 
@@ -278,8 +278,9 @@ sendAnalytics("open_app");
       target="blank"
       @click="sendAnalytics('footer')"
     >
-      <div class="text-center my-2" style="font-size: 13px">
-        Олексій Данишевський &copy; 2026 <br> м. Вінниця
+      <div class="text-center my-2">
+      
+        scode.pp.ua &copy; 2026
       </div>
     </a>
   </div>
