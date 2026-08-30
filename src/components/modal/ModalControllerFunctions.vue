@@ -1,8 +1,10 @@
 <script setup>
 import img_loading from "../../assets/img_loading.gif";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const props = defineProps({
-  apiScodeAll: Object,
+  apiData: Object,
   loading: Boolean,
   error: Boolean,
   success: Boolean,
@@ -10,7 +12,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="modal fade" tabindex="-1" id="ModalScodesAll">
+  <div class="modal fade" tabindex="-1" id="ModalControllerFunctions">
     <div class="modal-dialog">
       <div class="modal-content">
         <!-- loading -->
@@ -37,7 +39,7 @@ const props = defineProps({
         <div class="success" v-if="success">
           <div class="modal-header sticky-top bg-white">
             <h5 class="modal-title">
-              <i class="bi bi-book me-2"></i>Перегляд всіх скодів
+              <i class="bi bi-activity me-2"></i>Функціональні тести контролера
             </h5>
             <button
               type="button"
@@ -46,16 +48,17 @@ const props = defineProps({
               aria-label="Close"
             ></button>
           </div>
-
           <div class="mt-2 px-1">
             <div class="container col-auto pt-2">
-              <div
-                class="rounded border mb-3"
-                v-for="(item, index) in apiScodeAll"
-              >
-                <div class="p-2 fw-bolder">Scode {{ item.scode }}</div>
-                <div class="p-2">{{ item.error }}</div>
-                <div class="p-2">{{ item.solution }}</div>
+              <div class="mx-1 mb-4 fst-italic">
+                <i class="bi bi-exclamation-circle pe-2"></i>Функції обираються
+                утриманням кнопки на контролері та можуть відрізнятися залежно
+                від версії прошивки.
+              </div>
+              <div class="rounded border mb-3" v-for="(item, index) in apiData">
+                <div class="p-2 fw-bolder">Функція {{ item.function }}</div>
+                <div class="p-2">{{ item.name }}</div>
+                <div class="p-2">{{ item.description }}</div>
               </div>
             </div>
           </div>
