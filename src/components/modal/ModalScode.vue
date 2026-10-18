@@ -10,12 +10,30 @@ const props = defineProps({
   success: Boolean,
 });
 
-async function sendAnalytics(request) {
-  axios
-    .post(import.meta.env.VITE_URL_API_ANALYTICS + "/" + request)
-    .catch((error) => {
-      console.log(error);
-    });
+const urlApi = import.meta.env.VITE_URL_API;
+
+// async function sendAction(bodyRequest, action) {
+//   axios.post(urlApi, {
+//     action: bodyRequest,
+//     is_action: action,
+//   }).catch((error) => {
+//     console.log(error);
+//   });
+// }
+
+// Send action
+async function sendAction(action_name, action_data, is_action_save) {
+  axios.post(
+    'https://dov.pp.ua/api/analytics/save',
+    {
+      action_name: action_name,
+      action_data: action_data,
+      is_action_save: is_action_save,
+      project: 'scode'
+    }
+  ).catch((error) => {
+    console.log(error);
+  });
 }
 </script>
 
@@ -68,7 +86,7 @@ async function sendAnalytics(request) {
               class="btn btn-outline-dark col-12 fs-5 rounded-5 py-2"
               data-bs-toggle="modal"
               data-bs-target="#ModalFeedback"
-              @click="sendAnalytics('feedback')"
+              @click="sendAction('feedback', null, true)"
             >
               Додати коментар
             </button>
@@ -111,7 +129,7 @@ async function sendAnalytics(request) {
                   class="btn btn-outline-dark col-12 fs-5 rounded-5 py-2"
                   data-bs-toggle="modal"
                   data-bs-target="#ModalFeedback"
-                  @click="sendAnalytics('feedback')"
+                  @click="sendAction('feedback', null, true)"
                 >
                   <i class="bi bi-pen pe-2"></i>
                   Додати коментар

@@ -2,11 +2,23 @@
 import axios from "axios";
 const urlAnalytics = import.meta.env.VITE_URL_API_ANALYTICS;
 
-async function sendAnalytics(request) {
-  axios.post(urlAnalytics + "/" + request).catch((error) => {
+const urlApi = import.meta.env.VITE_URL_API;
+
+// Send action
+async function sendAction(action_name, action_data, is_action_save) {
+  axios.post(
+    'https://dov.pp.ua/api/analytics/save',
+    {
+      action_name: action_name,
+      action_data: action_data,
+      is_action_save: is_action_save,
+      project: 'scode'
+    }
+  ).catch((error) => {
     console.log(error);
   });
 }
+
 </script>
 
 <template>
@@ -34,8 +46,8 @@ async function sendAnalytics(request) {
 
             <p class="text-center my-3">
               Доступ із будь-якого пристрою за адресою:<br />
-              <a href="https://dov.pp.ua/scode" class="text-decoration-none">
-                https://dov.pp.ua/scode</a
+              <a href="https://scode.pp.ua" class="text-decoration-none">
+                scode.pp.ua</a
               >
             </p>
           </div>
@@ -45,7 +57,6 @@ async function sendAnalytics(request) {
               class="text-decoration-none text-black"
               href="https://github.com/danyshevskyi/scode-dev"
               target="blank"
-              @click="getApi(apiFooter)"
             >
             </a>
           </div>
@@ -58,27 +69,40 @@ async function sendAnalytics(request) {
               style="margin-bottom: 13px"
               data-bs-toggle="modal"
               data-bs-target="#ModalFeedback"
-              @click="sendAnalytics('feedback')"
+              @click="sendAction('feedback', null, true)"
             >
               <i class="bi bi-pen ps-1 pe-2"></i>Зворотний зв'язок
             </button>
           </div>
 
-          <div class="mx-auto pb-3">
+          <div class="mx-auto 1pb-2 1bb">
             <a
               class="text-decoration-none text-black"
               href="https://github.com/danyshevskyi/scode-dev"
               target="blank"
-              @click="getApi(apiFooter)"
             >
             <div class="text-center my-2">
                 Powered by laravel 12.x + Vue.js
               </div>
-              <div class="text-center my-2">
+              <div class="text-center 1my-2">
                 <i class="bi bi-github pe-2"></i>Scode on GitHub
               </div>
             </a>
           </div>
+
+          <div class="mx-auto 1pb-3 1bb">
+            <a
+              class="text-decoration-none text-black"
+              href="https://www.linkedin.com/in/danyshevskyi"
+              target="blank"
+              @click="getApi(apiFooter)"
+            >
+              <div class="text-center 1mb-4 mt-3 mb-4">
+                <i class="bi bi-linkedin pe-2"></i>Oleksii Danyshevskyi
+              </div>
+            </a>
+          </div>
+
         </div>
       </div>
     </div>

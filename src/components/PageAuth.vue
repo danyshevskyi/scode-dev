@@ -7,8 +7,7 @@ import ModalStacker from "../components/modal/ModalStacker.vue";
 import ModalScodesAll from "../components/modal/ModalScodesAll.vue";
 import ModalControllerFunctions from "../components/modal/ModalControllerFunctions.vue";
 
-const urlApi = import.meta.env.VITE_URL_API_APP;
-const urlAnalytics = import.meta.env.VITE_URL_API_ANALYTICS;
+const urlApi = import.meta.env.VITE_URL_API;
 
 const inputSearch = ref("");
 
@@ -16,16 +15,10 @@ const loading = ref(false);
 const error = ref(false);
 const success = ref(false);
 
-const apiController = {
-  url: "/controller",
-  body: computed(() => ({})),
-  result: "",
-  repeat: false,
-};
-
 const apiScodeSearch = {
-  url: "/scode_search",
   body: computed(() => ({
+    action: "scode_search",
+    is_action: true,
     scode: inputSearch.value,
   })),
   result: "",
@@ -33,32 +26,58 @@ const apiScodeSearch = {
 };
 
 const apiStacker = {
-  url: "/stacker",
-  body: computed(() => ({})),
+  body: computed(() => ({
+    action: "stacker_components",
+    is_action: true,
+  })),
   result: "",
   repeat: false,
 };
 
 const apiScodeAll = {
-  url: "/scode_all",
-  body: computed(() => ({})),
+  body: computed(() => ({
+    action: "scode_all",
+    is_action: true,
+  })),
+  result: "",
+  repeat: false,
+};
+
+const apiController = {
+  body: computed(() => ({
+    action: "controller_components",
+    is_action: true
+  })),
   result: "",
   repeat: false,
 };
 
 const apiControllerFunctions = {
-  url: "/controller_functions",
-  body: computed(() => ({})),
+  body: computed(() => ({
+    action: "controller_functions",
+    is_action: true,
+  })),
   result: "",
   repeat: false,
 };
 
-async function sendAnalytics(urlRequest, bodyRequest) {
-  axios.post(urlAnalytics + "/save/" + urlRequest, bodyRequest).catch((error) => {
+
+// Send action
+async function sendAction(action_name, action_data, is_action_save) {
+  axios.post(
+    'https://dov.pp.ua/api/analytics/save',
+    {
+      action_name: action_name,
+      action_data: action_data,
+      is_action_save: is_action_save,
+      project: 'scode'
+    }
+  ).catch((error) => {
     console.log(error);
   });
 }
 
+// Get data
 async function getApi(apiRequest) {
   if (apiRequest.repeat == false && apiRequest.result != "") {
     loading.value = false;
@@ -68,7 +87,7 @@ async function getApi(apiRequest) {
     error.value = false;
     success.value = false;
     axios
-      .post(urlApi + apiRequest.url, apiRequest.body.value)
+      .post(urlApi, apiRequest.body.value)
       .catch((error) => {
         console.log(error);
       })
@@ -85,7 +104,7 @@ async function getApi(apiRequest) {
   }
 }
 
-sendAnalytics("open_app");
+sendAction('open_app', null, false);
 </script>
 
 <template>
@@ -106,7 +125,7 @@ sendAnalytics("open_app");
         type="button"
         class="btn btn-outline-dark text-decoration-none"
         data-bs-toggle="dropdown"
-        @click="sendAnalytics('menu')"
+        @click="sendAction('menu', null, true);"
       >
         Меню
       </button>
@@ -120,7 +139,8 @@ sendAnalytics("open_app");
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#ModalScodesAll"
-            @click="getApi(apiScodeAll), sendAnalytics('scode_all')"
+            @click="getApi(apiScodeAll),
+            sendAction('scode_all', null, true)"
           >
             <i class="bi bi-book ps-1 pe-2"></i>Всі скоди
           </buttom>
@@ -132,7 +152,9 @@ sendAnalytics("open_app");
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#ModalStacker"
-            @click="getApi(apiStacker), sendAnalytics('stacker_scheme')"
+            @click="getApi(apiStacker),
+            sendAction('stacker_scheme', null, true);
+            "
           >
             <i class="bi bi-hdd-rack ps-1 pe-2"></i>Схема стекера
           </buttom>
@@ -144,7 +166,8 @@ sendAnalytics("open_app");
             class="btn btn-link text-decoration-none text-start text-black col-12 position-relative"
             data-bs-toggle="modal"
             data-bs-target="#ModalController"
-            @click="getApi(apiController), sendAnalytics('controller_scheme')"
+            @click="getApi(apiController),
+            sendAction('controller_scheme', null, true)"
           >
             <i class="bi bi-cpu pe-2"></i>Схема контроллера
             <!-- <span
@@ -161,10 +184,8 @@ sendAnalytics("open_app");
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#ModalControllerFunctions"
-            @click="
-              getApi(apiControllerFunctions),
-                sendAnalytics('controller_functions')
-            "
+            @click="getApi(apiControllerFunctions),
+            sendAction('controller_functions', null, true)"
           >
             <i class="bi bi-activity 1ps-1 pe-2"></i>Функціональні тести<br />контролера
           </buttom>
@@ -177,7 +198,7 @@ sendAnalytics("open_app");
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#ModalAddDesktop"
-            @click="sendAnalytics('add_desktop')"
+            @click="sendAction('add_desktop', null, true)"
           >
             <i class="bi bi-box-arrow-in-down-left ps-1 pe-2"></i>Додати на
             робочий стіл
@@ -189,7 +210,7 @@ sendAnalytics("open_app");
             class="btn btn-link text-decoration-none text-start text-black col-12"
             data-bs-toggle="modal"
             data-bs-target="#mod_about"
-            @click="sendAnalytics('about')"
+            @click="sendAction('about', null, true)"
           >
             <i class="bi bi-info-circle ps-1 pe-2"></i>Про додаток
           </buttom>
@@ -211,7 +232,7 @@ sendAnalytics("open_app");
             <buttom
               type="buttom"
               class="btn btn-link text-decoration-none text-start text-black col-12"
-              @click="sendAnalytics('donats')"
+              @click="sendAction('donats', null, true)"
             >
               <i class="bi bi-cup-hot ps-1 pe-2"></i>Підтримати проект
             </buttom>
@@ -248,8 +269,8 @@ sendAnalytics("open_app");
         data-bs-toggle="modal"
         data-bs-target="#ModalScode"
         @click="
-          getApi(apiScodeSearch);
-          sendAnalytics('scode_search', apiScodeSearch.body.value);
+          getApi(apiScodeSearch),
+          sendAction('search', inputSearch, true),
           inputSearch = '';
         "
         ref="q"
@@ -260,8 +281,8 @@ sendAnalytics("open_app");
   </div>
 
   <!-- Footer -->
-  <div class="mx-auto fixed-bottom pb-3" style="max-width: 1000px">
-    <!-- <a
+  
+    <!-- <div class="mx-auto fixed-bottom pb-3" style="max-width: 1000px"><a
       class="text-decoration-none text-black"
       href="https://www.privat24.ua/send/i6l12"
       target="blank"
@@ -272,7 +293,7 @@ sendAnalytics("open_app");
     <!-- &nbsp Підтримати 💙💛 -->
     <!-- </div> -->
     <!-- </a> -->
-    <a
+    <!-- <a
       class="text-decoration-none text-black"
       href="https://dov.pp.ua"
       target="blank"
@@ -282,8 +303,28 @@ sendAnalytics("open_app");
       
         scode.pp.ua &copy; 2026
       </div>
+    </a> </div>-->
+
+  
+ 
+
+
+  <!-- footer -->
+  <div class="mx-auto fixed-bottom pb-4 1bb text-center" style="max-width: 1000px; font-size: 13px">
+    <a
+      class="text-decoration-none text-black"
+      @click="sendAction('footer', null, true)"     
+      href="https://scode.pp.ua"
+    >
+      <div>
+        <!-- Oleksii Danyshevskyi &copy; 2026 -->
+        scode.pp.ua &copy; 2026       
+      </div>
+      <!-- <div>scode.pp.ua &copy; 2026</div> -->
     </a>
   </div>
+  <!-- /footer -->
+
 
   <ModalScode
     :apiScodeSearch="apiScodeSearch.result"

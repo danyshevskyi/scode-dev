@@ -16,7 +16,7 @@ function sendFeedback() {
   vTextarea.value = !vTextarea.value;
   vOk.value = !vOk.value;
 
-  axios.post(urlApi + "/feedback", {
+  axios.post("https://dov.pp.ua/api/feedback", {
     project_id: project.value,
     // user_id: user.value.id,
     feedback_text: textFeedback.value,
@@ -28,6 +28,30 @@ function toggle() {
     vTextarea.value = !vTextarea.value;
     vOk.value = !vOk.value;
   }, 200);
+}
+
+// async function sendAction(bodyRequest, action) {
+//   axios.post(urlApi, {
+//     action: bodyRequest,
+//     is_action: action,
+//   }).catch((error) => {
+//     console.log(error);
+//   });
+// }
+
+// Send action
+async function sendAction(action_name, action_data, is_action_save) {
+  axios.post(
+    'https://dov.pp.ua/api/analytics/save',
+    {
+      action_name: action_name,
+      action_data: action_data,
+      is_action_save: is_action_save,
+      project: 'scode'
+    }
+  ).catch((error) => {
+    console.log(error);
+  });
 }
 </script>
 
@@ -70,7 +94,8 @@ function toggle() {
             type="button"
             class="btn btn-outline-dark"
             @click="
-              sendFeedback();
+              sendFeedback(),
+              sendAction('feedback_sent', textFeedback, true);
               textFeedback = '';
             "
           >
