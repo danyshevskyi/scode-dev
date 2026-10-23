@@ -48,7 +48,10 @@ async function sendAction(action_name, action_data, is_action_save) {
 
             <p class="text-center my-3">
               Дивись більше проектів:<br />
-              <a href="https://dov.pp.ua" target="_blank"class="text-decoration-none">
+              <a href="https://dov.pp.ua"
+                  target="_blank"
+                  class="text-decoration-none"
+                  @click="sendAction('dov.pp.ua', null, true)">
                 https://dov.pp.ua</a
               >
             </p>
